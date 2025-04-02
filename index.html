@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Центр по ремонту | EliteFix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            filter: brightness(70%);
+        }
+
+        .header-slide.active {
+            opacity: 1;
+        }
+
+        .header-text {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            text-align: left;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .header-text h1 {
+            font-size: 90px;
+            color: #ff8c00;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header-text p {
+            font-size: 36px;
+            animation: fadeInUp 1s ease 0.5s;
+            animation-fill-mode: both;
+        }
+
+        nav {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 25px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 35px;
+            font-weight: 700;
+            font-size: 22px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff8c00;
+        }
+
+        section {
+            min-height: 80vh;
+            padding: 80px 10%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .content {
+            max-width: 1400px;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 64px;
+            margin-bottom: 25px;
+            color: #ff8c00;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        p {
+            font-size: 28px;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            filter: blur(8px);
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        section:hover .section-bg {
+            transform: scale(1.05);
+        }
+
+        .block {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+            min-width: 320px;
+            max-width: 450px;
+            text-align: left;
+        }
+
+        .block:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .block img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .emoji-big {
+            font-size: 100px;
+            margin: 20px 0;
+        }
+
+        /* Стили для секций */
+        #home { background: linear-gradient(135deg, #1a1a1a, #ff8c00); }
+        #home .content { flex-direction: row; justify-content: flex-start; }
+
+        #repair { background: linear-gradient(to right, #fff, #1a1a1a); color: #fff; }
+        #repair .content { flex-direction: column; align-items: flex-start; }
+
+        #services { background: linear-gradient(45deg, #ff8c00, #1a1a1a); }
+        #services .content { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+
+        #contacts { background: #1a1a1a; border-top: 5px solid #ff8c00; }
+        #contacts .content { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
+
+        #delivery { background: linear-gradient(to bottom, #fff, #ff8c00); color: #1a1a1a; }
+        #delivery .content { flex-direction: column; align-items: flex-start; gap: 40px; }
+
+        #about { background: linear-gradient(90deg, #1a1a1a, #333); }
+        #about .content { flex-direction: row; justify-content: flex-start; }
+
+        #reviews { background: linear-gradient(to top, #fff, #1a1a1a); color: #fff; }
+        #reviews .content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+
+        /* Калькулятор */
+        #calculator {
+            background: linear-gradient(135deg, #ff8c00, #1a1a1a);
+            padding: 80px 10%;
+        }
+
+        .calc-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 900px;
+            text-align: left;
+        }
+
+        .calc-container h2 {
+            text-align: left;
+        }
+
+        .calc-container select, .calc-container input {
+            width: 100%;
+            padding: 20px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 10px;
+            background: #fff;
+            font-size: 24px;
+        }
+
+        .calc-container button {
+            background: #ff8c00;
+            color: #fff;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background 0.3s ease;
+        }
+
+        .calc-container button:hover {
+            background: #e07b00;
+        }
+
+        #calc-result {
+            margin-top: 25px;
+            font-size: 32px;
+            color: #fff;
+        }
+
+        /* Анимации */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content { animation: fadeInUp 1s ease; }
+        .emoji { font-size: 60px; margin: 20px 0; animation: bounce 2s infinite; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 1024px) {
+            .header-text h1 { font-size: 60px; }
+            .header-text p { font-size: 28px; }
+            nav { padding: 15px; }
+            nav a { margin: 0 20px; font-size: 18px; }
+            section { padding: 60px 5%; }
+            h2 { font-size: 48px; }
+            p { font-size: 22px; }
+            .block { min-width: 280px; max-width: 100%; padding: 20px; }
+            .block img { max-width: 100%; }
+            .emoji-big { font-size: 80px; }
+            .calc-container { padding: 30px; }
+            .calc-container select, .calc-container input { padding: 15px; font-size: 20px; }
+            .calc-container button { padding: 15px 30px; font-size: 20px; }
+            #calc-result { font-size: 26px; }
+        }
+
+        @media (max-width: 768px) {
+            .header-text { left: 5%; }
+            .header-text h1 { font-size: 40px; letter-spacing: 2px; }
+            .header-text p { font-size: 20px; }
+            nav { padding: 10px; text-align: left; }
+            nav a { display: block; margin: 10px 0; font-size: 16px; }
+            section { padding: 40px 5%; min-height: auto; }
+            h2 { font-size: 36px; margin-bottom: 20px; }
+            p { font-size: 18px; }
+            .content { flex-direction: column !important; gap: 20px; }
+            .block { min-width: 100%; max-width: 100%; padding: 15px; }
+            .block img { max-width: 100%; }
+            .emoji-big { font-size: 60px; }
+            #services .content, #reviews .content { grid-template-columns: 1fr; }
+            .calc-container { padding: 20px; }
+            .calc-container select, .calc-container input { padding: 12px; font-size: 16px; }
+            .calc-container button { padding: 12px 25px; font-size: 16px; }
+            #calc-result { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-slide" style="background-image: url('https://мастер-рем.рф/attachments/Image/32505_156068449613811.jpg');"></div>
+        <div class="header-slide" style="background-image: url('https://urielt.by/images/editor/73c421aa4bf867165cdfb6cebcc21e22.jpg');"></div>
+        <div class="header-slide" style="background-image: url('https://www.keramis.com.ua/wa-data/public/blog/img/1-87.jpg');"></div>
+        <div class="header-slide" style="background-image: url('https://restroymaster.ru/assets/images/articles/remont-potolka-v-kvartire-11.jpg');"></div>
+        <div class="header-text">
+            <h1>EliteFix</h1>
+            <p>Ремонт нового поколения</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#home">Главная</a>
+        <a href="#repair">Ремонт</a>
+        <a href="#services">Услуги</a>
+        <a href="#calculator">Калькулятор</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#delivery">Доставка</a>
+        <a href="#about">О нас</a>
+        <a href="#reviews">Отзывы</a>
+    </nav>
+
+    <section id="home">
+        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Home+BG');"></div>
+        <div class="content">
+            <h2>Добро пожаловать! 🏠</h2>
+            <div class="block"><p>Стильный ремонт для молодежи и элиты</p></div>
+            <div class="block"><img src="https://via.placeholder.com/400x300?text=Style" alt="Style"></div>
+            <div class="block"><span class="emoji-big">🔥</span><p>Тренды 2025</p></div>
+        </div>
+    </section>
+
+    <section id="repair">
+        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Repair+BG');"></div>
+        <div class="content">
+            <h2>Ремонт 🔧</h2>
+            <div class="block"><p>Твой гаджет – наша забота</p></div>
+            <div class="block"><img src="https://via.placeholder.com/400x300?text=Gadget" alt="Gadget"></div>
+            <div class="block"><p>Гарантия до 5 лет</p></div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Services+BG');"></div>
+        <div class="content">
+            <h2>Услуги 🛠️</h2>
+            <div class="block"><p>Диагностика за 1 час</p></div>
+            <div class="block"><p>Замена деталей</p></div>
+            <div class="block"><p>Тюнинг техники</p></div>
+            <div class="block"><img src="https://via.placeholder.com/400x300?text=Tools" alt="Tools"></div>
+        </div>
+    </section>
+
+    <section id="calculator">
+        <div class="calc-container">
+            <h2>Рассчитать стоимость</h2>
+            <select id="repair-type">
+                <option value="10000">Ремонт телефона</option>
+                <option value="15000">Ремонт ноутбука</option>
+                <option value="20000">Ремонт бытовой техники</option>
+            </select>
+            <input type="number" id="area" placeholder="Площадь (м², если применимо)">
+            <button onclick="calculateCost()">Рассчитать</button>
+            <div id="calc-result"></div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Contacts+BG');"></div>
+        <div class="content">
+            <h2>Контакты 📲</h2>
+            <div class="block"><p>+7 (999) 777-88-99</p></div>
+            <div class="block"><p>elitefix@cool.ru</p></div>
+            <div class="block"><img src="https://via.placeholder.com/400x300?text=Map" alt="Map"></div>
+        </div>
+    </section>
+
+    <section id="delivery">
+        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Delivery+BG');"></div>
+        <div class="content">
+            <h2>Доставка 🚀</h2>
+            <div class="block"><p>Заберём твою технику</p></div>
+            <div class="block"><img src="https://via.placeholder.com/400x300?text=Delivery" alt="Delivery"></div>
+            <div class="block"><p>Вернем как новую за 24 часа</p></div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=About+BG');"></div>
+        <div class="content">
+            <h2>О нас 🌟</h2>
+            <div class="block"><p>Мы – будущее ремонта</p></div>
+            <div class="block"><img src="https://via.placeholder.com/400x300?text=Team" alt="Team"></div>
+            <div class="block"><span class="emoji-big">👨‍🔧</span></div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Reviews+BG');"></div>
+        <div class="content">
+            <h2>Отзывы 🔥</h2>
+            <div class="block"><p>"Лучший сервис ever!" – Макс</p></div>
+            <div class="block"><p>"Супер быстро!" – Аня</p></div>
+            <div class="block"><img src="https://via.placeholder.com/400x300?text=Happy" alt="Happy"></div>
+            <div class="block"><span class="emoji-big">⭐</span></div>
+        </div>
+    </section>
+
+    <script>
+        const slides = document.querySelectorAll('.header-slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        showSlide(currentSlide);
+        setInterval(nextSlide, 3000);
+
+        function calculateCost() {
+            const repairType = parseInt(document.getElementById('repair-type').value);
+            const area = parseInt(document.getElementById('area').value) || 0;
+            const baseCost = repairType;
+            const totalCost = baseCost + (area * 500);
+            document.getElementById('calc-result').innerHTML = `Стоимость: ${totalCost.toLocaleString()} ₽`;
+        }
+    </script>
+</body>
+</html>
