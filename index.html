@@ -732,6 +732,35 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* WhatsApp Icon */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .whatsapp-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float a:hover {
+            background-color: #20b358;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             to {
@@ -806,6 +835,12 @@
 
             .history-content h2 {
                 font-size: 2rem;
+            }
+
+            .whatsapp-float a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -1005,7 +1040,7 @@
                                 <h3>Mediterranean Salad</h3>
                                 <div class="menu-item-price">$10.75</div>
                             </div>
-                            <p class="menu-item-desc">Mixed greens with grilled chicken, feta cheese, olives, and balsamic dressing.</p>
+                            <p class="menu-item-desc">Mixed greens with Grilled Chicken, feta cheese, olives, and balsamic dressing.</p>
                         </div>
                     </div>
                     <div class="menu-item">
@@ -1160,66 +1195,66 @@
     </section>
 
     <!-- Booking Section -->
-<section id="booking" class="section booking">
-    <div class="container">
-        <div class="section-heading">
-            <h2>Reserve a Table</h2>
-            <p>Make your visit even more special by reserving your spot</p>
-        </div>
-        <div class="booking-content">
-            <div class="booking-text fade-in">
-                <h3>Enjoy a Seamless Experience</h3>
-                <p>Whether you're planning a quiet breakfast, a business meeting, or a casual get-together with friends, we're here to make your experience memorable.</p>
-                <p>For immediate assistance or special requests, please call us at <strong>(555) 123-4567</strong> or email <strong>reservations@cafeserenity.com</strong>.</p>
-                <p>We recommend making reservations at least 24 hours in advance, especially for weekends and larger groups.</p>
+    <section id="booking" class="section booking">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Reserve a Table</h2>
+                <p>Make your visit even more special by reserving your spot</p>
             </div>
-            <div class="booking-form fade-in">
-                <!-- Updated form with web3forms integration -->
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <!-- Access Key -->
-                    <input type="hidden" name="access_key" value="fc8231b9-505f-4daf-b2cd-f38dc83476fc">
+            <div class="booking-content">
+                <div class="booking-text fade-in">
+                    <h3>Enjoy a Seamless Experience</h3>
+                    <p>Whether you're planning a quiet breakfast, a business meeting, or a casual get-together with friends, we're here to make your experience memorable.</p>
+                    <p>For immediate assistance or special requests, please call us at <strong>(555) 123-4567</strong> or email <strong>reservations@cafeserenity.com</strong>.</p>
+                    <p>We recommend making reservations at least 24 hours in advance, especially for weekends and larger groups.</p>
+                </div>
+                <div class="booking-form fade-in">
+                    <!-- Updated form with web3forms integration -->
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <!-- Access Key -->
+                        <input type="hidden" name="access_key" value="fc8231b9-505f-4daf-b2cd-f38dc83476fc">
 
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group">
-                            <input type="date" name="date" class="form-control" required>
+                            <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="time" name="time" class="form-control" required>
+                            <input type="email" name="email" class="form-control" placeholder="Email Address" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <select name="guests" class="form-control" required>
-                            <option value="" disabled selected>Number of Guests</option>
-                            <option value="1">1 Person</option>
-                            <option value="2">2 People</option>
-                            <option value="3">3 People</option>
-                            <option value="4">4 People</option>
-                            <option value="5">5 People</option>
-                            <option value="6+">6+ People</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" class="form-control" rows="3" placeholder="Special Requests (Optional)"></textarea>
-                    </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="date" name="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="time" name="time" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select name="guests" class="form-control" required>
+                                <option value="" disabled selected>Number of Guests</option>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6+">6+ People</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" rows="3" placeholder="Special Requests (Optional)"></textarea>
+                        </div>
 
-                    <!-- Honeypot Spam Protection -->
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        <!-- Honeypot Spam Protection -->
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-                    <button type="submit" class="btn" style="width: 100%;">Reserve Now</button>
-                </form>
+                        <button type="submit" class="btn" style="width: 100%;">Reserve Now</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -1266,10 +1301,17 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Café Serenity. All Rights Reserved.</p>
+                <p>© 2025 Café Serenity. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Icon -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/1234567890" target="_blank" aria-label="Chat with us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
 
     <script>
         // Header Slideshow
