@@ -1,438 +1,1431 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Центр по ремонту | EliteFix</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Café Serenity - Relax & Enjoy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #f8b195;
+            --secondary: #f67280;
+            --accent: #c06c84;
+            --light: #fef9f8;
+            --dark: #6c5b7b;
+            --text: #333;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
         }
 
         body {
-            background: #1a1a1a;
-            color: #fff;
-            line-height: 1.4;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
             overflow-x: hidden;
+            background-color: var(--light);
         }
 
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(192, 108, 132, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(192, 108, 132, 0.4);
+        }
+
+        /* Header */
         header {
-            height: 100vh;
             position: relative;
+            height: 100vh;
             overflow: hidden;
+        }
+
+        .header-slideshow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
         .header-slide {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 1.5s ease;
-            filter: brightness(70%);
+            transition: opacity 1.5s ease-in-out;
         }
 
         .header-slide.active {
             opacity: 1;
         }
 
-        .header-text {
+        .header-overlay {
             position: absolute;
-            top: 50%;
-            left: 10%;
-            transform: translateY(-50%);
-            text-align: left;
-            color: #fff;
-            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
         }
 
-        .header-text h1 {
-            font-size: 90px;
-            color: #ff8c00;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            animation: fadeInDown 1s ease;
+        .header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
         }
 
-        .header-text p {
-            font-size: 36px;
-            animation: fadeInUp 1s ease 0.5s;
-            animation-fill-mode: both;
+        .header-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.8s;
         }
 
+        .header-content .btn {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.1s;
+        }
+
+        /* Navigation */
         nav {
-            background: rgba(26, 26, 26, 0.95);
-            padding: 25px;
             position: fixed;
             width: 100%;
-            top: 0;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
         }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 35px;
-            font-weight: 700;
-            font-size: 22px;
-            transition: color 0.3s ease;
+        nav.scrolled {
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
         }
 
-        nav a:hover {
-            color: #ff8c00;
-        }
-
-        section {
-            min-height: 80vh;
-            padding: 80px 10%;
-            position: relative;
-            overflow: hidden;
+        .nav-container {
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .content {
-            max-width: 1400px;
-            z-index: 2;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: flex-start;
-            text-align: left;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
         }
 
-        h2 {
-            font-size: 64px;
-            margin-bottom: 25px;
-            color: #ff8c00;
-            text-transform: uppercase;
+        nav.scrolled .logo {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
             width: 100%;
         }
 
-        p {
-            font-size: 28px;
+        .burger {
+            display: none;
+            cursor: pointer;
         }
 
-        .section-bg {
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .burger div {
+            background-color: var(--text);
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-heading h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-heading p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        /* Menu Section */
+        .menu {
+            background-color: #fef9f8;
+            position: relative;
+        }
+
+        .menu::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
-            filter: blur(8px);
+            background: url('/api/placeholder/1200/800') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .menu-content {
+            position: relative;
             z-index: 1;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .menu-tab {
+            padding: 10px 25px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .menu-tab.active, .menu-tab:hover {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-category {
+            display: none;
+        }
+
+        .menu-category.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        section:hover .section-bg {
-            transform: scale(1.05);
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.1);
         }
 
-        .block {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 30px;
-            border-radius: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            flex: 1;
-            min-width: 320px;
-            max-width: 450px;
-            text-align: left;
+        .menu-item-content {
+            padding: 20px;
         }
 
-        .block:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        .block img {
+        .menu-item-title h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .menu-item-desc {
+            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team {
+            background-color: white;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member-images {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .team-member-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 400px;
-            border-radius: 15px;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .team-member-image.active {
+            opacity: 1;
+        }
+
+        .team-member-content {
+            padding: 20px;
+            text-align: center;
+            background-color: white;
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .team-member-title {
+            color: var(--accent);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .team-social a:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Address & History Section */
+        .history {
+            position: relative;
+            padding: 150px 0;
+            color: white;
+        }
+
+        .history-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .history-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .history-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(108, 91, 123, 0.8), rgba(192, 108, 132, 0.8));
+            z-index: -1;
+        }
+
+        .history-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .history-content h2 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
         }
 
-        .emoji-big {
-            font-size: 100px;
-            margin: 20px 0;
+        .history-content p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
 
-        /* Стили для секций */
-        #home { background: linear-gradient(135deg, #1a1a1a, #ff8c00); }
-        #home .content { flex-direction: row; justify-content: flex-start; }
-
-        #repair { background: linear-gradient(to right, #fff, #1a1a1a); color: #fff; }
-        #repair .content { flex-direction: column; align-items: flex-start; }
-
-        #services { background: linear-gradient(45deg, #ff8c00, #1a1a1a); }
-        #services .content { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-
-        #contacts { background: #1a1a1a; border-top: 5px solid #ff8c00; }
-        #contacts .content { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
-
-        #delivery { background: linear-gradient(to bottom, #fff, #ff8c00); color: #1a1a1a; }
-        #delivery .content { flex-direction: column; align-items: flex-start; gap: 40px; }
-
-        #about { background: linear-gradient(90deg, #1a1a1a, #333); }
-        #about .content { flex-direction: row; justify-content: flex-start; }
-
-        #reviews { background: linear-gradient(to top, #fff, #1a1a1a); color: #fff; }
-        #reviews .content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-
-        /* Калькулятор */
-        #calculator {
-            background: linear-gradient(135deg, #ff8c00, #1a1a1a);
-            padding: 80px 10%;
-        }
-
-        .calc-container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 50px;
+        .address-details {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            max-width: 900px;
-            text-align: left;
+            display: inline-block;
         }
 
-        .calc-container h2 {
-            text-align: left;
+        .address-details h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .calc-container select, .calc-container input {
-            width: 100%;
-            padding: 20px;
+        .address-item {
+            display: flex;
+            align-items: center;
             margin: 15px 0;
-            border: none;
-            border-radius: 10px;
-            background: #fff;
-            font-size: 24px;
         }
 
-        .calc-container button {
-            background: #ff8c00;
-            color: #fff;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            transition: background 0.3s ease;
+        .address-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
         }
 
-        .calc-container button:hover {
-            background: #e07b00;
+        /* Booking Section */
+        .booking {
+            background-color: var(--light);
         }
 
-        #calc-result {
-            margin-top: 25px;
-            font-size: 32px;
-            color: #fff;
+        .booking-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
         }
 
-        /* Анимации */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+        .booking-text {
+            flex: 1;
+            min-width: 300px;
         }
 
+        .booking-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .booking-text p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(192, 108, 132, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .content { animation: fadeInUp 1s ease; }
-        .emoji { font-size: 60px; margin: 20px 0; animation: bounce 2s infinite; }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        /* Мобильная адаптация */
-        @media (max-width: 1024px) {
-            .header-text h1 { font-size: 60px; }
-            .header-text p { font-size: 28px; }
-            nav { padding: 15px; }
-            nav a { margin: 0 20px; font-size: 18px; }
-            section { padding: 60px 5%; }
-            h2 { font-size: 48px; }
-            p { font-size: 22px; }
-            .block { min-width: 280px; max-width: 100%; padding: 20px; }
-            .block img { max-width: 100%; }
-            .emoji-big { font-size: 80px; }
-            .calc-container { padding: 30px; }
-            .calc-container select, .calc-container input { padding: 15px; font-size: 20px; }
-            .calc-container button { padding: 15px 30px; font-size: 20px; }
-            #calc-result { font-size: 26px; }
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @media (max-width: 768px) {
-            .header-text { left: 5%; }
-            .header-text h1 { font-size: 40px; letter-spacing: 2px; }
-            .header-text p { font-size: 20px; }
-            nav { padding: 10px; text-align: left; }
-            nav a { display: block; margin: 10px 0; font-size: 16px; }
-            section { padding: 40px 5%; min-height: auto; }
-            h2 { font-size: 36px; margin-bottom: 20px; }
-            p { font-size: 18px; }
-            .content { flex-direction: column !important; gap: 20px; }
-            .block { min-width: 100%; max-width: 100%; padding: 15px; }
-            .block img { max-width: 100%; }
-            .emoji-big { font-size: 60px; }
-            #services .content, #reviews .content { grid-template-columns: 1fr; }
-            .calc-container { padding: 20px; }
-            .calc-container select, .calc-container input { padding: 12px; font-size: 16px; }
-            .calc-container button { padding: 12px 25px; font-size: 16px; }
-            #calc-result { font-size: 20px; }
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .header-content p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: white;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.5s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links a {
+                color: var(--text);
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-heading h2 {
+                font-size: 2rem;
+            }
+
+            .history {
+                padding: 80px 0;
+            }
+
+            .history-content h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Café Serenity</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#history">Our Story</a></li>
+                <li><a href="#booking">Reservations</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
     <header>
-        <div class="header-slide" style="background-image: url('https://мастер-рем.рф/attachments/Image/32505_156068449613811.jpg');"></div>
-        <div class="header-slide" style="background-image: url('https://urielt.by/images/editor/73c421aa4bf867165cdfb6cebcc21e22.jpg');"></div>
-        <div class="header-slide" style="background-image: url('https://www.keramis.com.ua/wa-data/public/blog/img/1-87.jpg');"></div>
-        <div class="header-slide" style="background-image: url('https://restroymaster.ru/assets/images/articles/remont-potolka-v-kvartire-11.jpg');"></div>
-        <div class="header-text">
-            <h1>EliteFix</h1>
-            <p>Ремонт нового поколения</p>
+        <div class="header-slideshow">
+            <div class="header-slide active" style="background-image: url('https://images.wallpaperscraft.com/image/single/tables_cafe_view_39232_1600x900.jpg');"></div>
+            <div class="header-slide" style="background-image: url('https://www.barnews.ch/wp-content/uploads/Cafe-Europa-Zuerich.jpg');"></div>
+            <div class="header-slide" style="background-image: url('https://assets.atdw-online.com.au/images/77f10eacf2d3ff63585030e920b7bedb.jpeg?rect=0%2C20%2C2064%2C1161&w=1600&h=900&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjVjZjc0N2EyNmQxNjUzYjM2OWNmOTU1MCIsImRpc3RyaWJ1dG9ySWQiOiI1ZjFmYTk3Y2ViY2I5NjBhMTc5MWU4ZjMiLCJhcGlrZXlJZCI6IjVmMWZhOTdjZWJjYjk2MGExNzkxZThmNiJ9');"></div>
+        </div>
+        <div class="header-overlay">
+            <div class="header-content">
+                <h1>Welcome to Café Serenity</h1>
+                <p>Where every cup tells a story and every bite creates a memory</p>
+                <a href="#booking" class="btn">Reserve a Table</a>
+            </div>
         </div>
     </header>
 
-    <nav>
-        <a href="#home">Главная</a>
-        <a href="#repair">Ремонт</a>
-        <a href="#services">Услуги</a>
-        <a href="#calculator">Калькулятор</a>
-        <a href="#contacts">Контакты</a>
-        <a href="#delivery">Доставка</a>
-        <a href="#about">О нас</a>
-        <a href="#reviews">Отзывы</a>
-    </nav>
-
-    <section id="home">
-        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Home+BG');"></div>
-        <div class="content">
-            <h2>Добро пожаловать! 🏠</h2>
-            <div class="block"><p>Стильный ремонт для молодежи и элиты</p></div>
-            <div class="block"><img src="https://via.placeholder.com/400x300?text=Style" alt="Style"></div>
-            <div class="block"><span class="emoji-big">🔥</span><p>Тренды 2025</p></div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-heading">
+                <h2>About Us</h2>
+                <p>Discover the perfect blend of comfort and quality</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h3>A Haven of Tranquility</h3>
+                    <p>Nestled in the heart of the city, Café Serenity offers a peaceful retreat from the hustle and bustle of everyday life. Our café was born from a passion for creating spaces where people can connect, unwind, and savor moments of tranquility.</p>
+                    <p>Every detail at Café Serenity has been thoughtfully crafted to provide you with a warm, inviting atmosphere that feels like a second home. From our handpicked decor to the soothing music that fills the air, we've created an environment where you can truly relax.</p>
+                    <a href="#history" class="btn">Our Story</a>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://images.wallpaperscraft.com/image/single/tables_cafe_view_39232_1600x900.jpg" alt="Café Interior">
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="repair">
-        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Repair+BG');"></div>
-        <div class="content">
-            <h2>Ремонт 🔧</h2>
-            <div class="block"><p>Твой гаджет – наша забота</p></div>
-            <div class="block"><img src="https://via.placeholder.com/400x300?text=Gadget" alt="Gadget"></div>
-            <div class="block"><p>Гарантия до 5 лет</p></div>
+    <!-- Menu Section -->
+    <section id="menu" class="section menu">
+        <div class="container menu-content">
+            <div class="section-heading">
+                <h2>Our Menu</h2>
+                <p>Discover our handcrafted delights, made with love and premium ingredients</p>
+            </div>
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="coffee">Coffee</button>
+                <button class="menu-tab" data-category="pastries">Pastries</button>
+                <button class="menu-tab" data-category="breakfast">Breakfast</button>
+                <button class="menu-tab" data-category="lunch">Lunch</button>
+            </div>
+            <div class="menu-categories">
+                <div class="menu-category active" data-category="coffee">
+                    <div class="menu-item fade-in">
+                        <div class="menu-item-image">
+                            <img src="https://blogstudio.s3.theshoppad.net/coffeeheroau/ec178d83e5f597b162cda1e60cb64194.jpg" alt="Espresso">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Classic Espresso</h3>
+                                <div class="menu-item-price">$3.50</div>
+                            </div>
+                            <p class="menu-item-desc">Our signature espresso shot, rich and full-bodied with a perfect crema.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item fade-in">
+                        <div class="menu-item-image">
+                            <img src="https://cdn.isi.com/media/ae/ac/84/1681216768/New%20York%20Cheesecake%20Cappucchino.jpg" alt="Cappuccino">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Creamy Cappuccino</h3>
+                                <div class="menu-item-price">$4.50</div>
+                            </div>
+                            <p class="menu-item-desc">Equal parts espresso, steamed milk, and velvety foam for a perfect balance.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item fade-in">
+                        <div class="menu-item-image">
+                            <img src="https://www.foodandwine.com/thmb/d1vuaANhp__L9IxFoHFzGQCLs6k=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Partners-Latte-FT-BLOG0523-09569880de524fe487831d95184495cc.jpg" alt="Latte">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Artisan Latte</h3>
+                                <div class="menu-item-price">$4.75</div>
+                            </div>
+                            <p class="menu-item-desc">Smooth espresso with steamed milk, topped with beautiful latte art.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-category" data-category="pastries">
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.lalevain.com/wp-content/uploads/2021/11/Xsant-768x768.jpg" alt="Croissant">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Butter Croissant</h3>
+                                <div class="menu-item-price">$3.75</div>
+                            </div>
+                            <p class="menu-item-desc">Flaky, buttery layers that melt in your mouth. Baked fresh daily.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.spatuladesserts.com/wp-content/uploads/2024/09/Double-chocolate-muffins-04172.jpg" alt="Chocolate Muffin">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Double Chocolate Muffin</h3>
+                                <div class="menu-item-price">$4.25</div>
+                            </div>
+                            <p class="menu-item-desc">Rich chocolate muffin with chocolate chips throughout.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://field-fare.com/wp-content/uploads/2021/08/Cinnamon_swirl_hero-1.jpg" alt="Cinnamon Roll">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Cinnamon Swirl</h3>
+                                <div class="menu-item-price">$4.50</div>
+                            </div>
+                            <p class="menu-item-desc">Soft, spiraled pastry with cinnamon filling and cream cheese glaze.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-category" data-category="breakfast">
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.rootsandradishes.com/wp-content/uploads/2017/08/avocado-toast-with-everything-bagel-seasoning-4.jpg" alt="Avocado Toast">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Avocado Toast</h3>
+                                <div class="menu-item-price">$8.50</div>
+                            </div>
+                            <p class="menu-item-desc">Sourdough toast topped with mashed avocado, cherry tomatoes, and microgreens.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://i0.wp.com/fortheloveofgourmet.com/wp-content/uploads/2022/01/IMG_6467-scaled.jpg?resize=600%2C900&ssl=1" alt="Breakfast Bowl">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Energizing Breakfast Bowl</h3>
+                                <div class="menu-item-price">$9.50</div>
+                            </div>
+                            <p class="menu-item-desc">Greek yogurt topped with house-made granola, fresh berries, and honey drizzle.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.thespruceeats.com/thmb/uJNzfBNBhtogWSExugLzjU2LmsI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/EggsBenectictHERO-4a957cd9e4624262b3e9b8f645462f91.jpg" alt="Eggs Benedict">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Classic Eggs Benedict</h3>
+                                <div class="menu-item-price">$11.25</div>
+                            </div>
+                            <p class="menu-item-desc">English muffin topped with Canadian bacon, poached eggs, and hollandaise sauce.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-category" data-category="lunch">
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.straightupfood.com/blog/wp-content/uploads/2019/06/Mediterranean-Salad8.jpg" alt="Chicken Salad">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Mediterranean Salad</h3>
+                                <div class="menu-item-price">$10.75</div>
+                            </div>
+                            <p class="menu-item-desc">Mixed greens with grilled chicken, feta cheese, olives, and balsamic dressing.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://assets.epicurious.com/photos/54ad57b719925f464b3b4cf4/1:1/w_1920,c_limit/51201620_grilled-artisan-cheddar_1x1.jpg" alt="Sandwich">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Artisan Panini</h3>
+                                <div class="menu-item-price">$9.95</div>
+                            </div>
+                            <p class="menu-item-desc">Grilled sourdough bread with turkey, brie, apples, and cranberry spread.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://cdn10.phillymag.com/wp-content/uploads/sites/3/2013/10/shutterstock_84603193.jpg" alt="Soup">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Seasonal Soup</h3>
+                                <div class="menu-item-price">$6.50</div>
+                            </div>
+                            <p class="menu-item-desc">Chef's special soup made with seasonal ingredients. Served with crusty bread.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="services">
-        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Services+BG');"></div>
-        <div class="content">
-            <h2>Услуги 🛠️</h2>
-            <div class="block"><p>Диагностика за 1 час</p></div>
-            <div class="block"><p>Замена деталей</p></div>
-            <div class="block"><p>Тюнинг техники</p></div>
-            <div class="block"><img src="https://via.placeholder.com/400x300?text=Tools" alt="Tools"></div>
+    <!-- Team Section -->
+    <section id="team" class="section team">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Our Team</h2>
+                <p>Meet the passionate people behind your favorite café</p>
+            </div>
+            <div class="team-members">
+                <div class="team-member fade-in">
+                    <div class="team-member-images">
+                        <img src="https://www.purina.in/sites/default/files/2020-12/Understanding%20Your%20Cat%27s%20Body%20LanguageHERO.jpg" alt="Miaw" class="team-member-image active">
+                        <img src="https://media.4-paws.org/c/1/7/8/c178dd618346079f9b96edeacc30563b8de72fb4/Molly_006-2829x1886-2726x1886-1920x1328.webp" alt="Miaw" class="team-member-image">
+                        <img src="https://d2zp5xs5cp8zlg.cloudfront.net/image-53908-340.jpg" alt="Miaw" class="team-member-image">
+                    </div>
+                    <div class="team-member-content">
+                        <h3>Cat miaw</h3>
+                        <div class="team-member-title">Founder & Head Barista</div>
+                        <p>With 10 years of coffee expertise, Cat brings passion and precision to every cup.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="team-member-images">
+                        <img src="https://www.purina.in/sites/default/files/2020-12/The%20History%20of%20CatsHERO.jpg" alt="Michael" class="team-member-image active">
+                        <img src="https://www.lismore.nsw.gov.au/files/assets/public/v/1/1.-households/4.-pets-and-animals/kitten.jpg?dimension=pageimage&w=480" alt="Michael" class="team-member-image">
+                        <img src="https://petsastherapy.org/images/uploads/cutouts/Cats_for_website_2.0_copy_.png" alt="Michael" class="team-member-image">
+                    </div>
+                    <div class="team-member-content">
+                        <h3>Cat maw</h3>
+                        <div class="team-member-title">Executive Chef</div>
+                        <p>Maw crafts our delicious menu with creativity and attention to detail.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="team-member-images">
+                        <img src="https://meowfoundation.com/wp-content/uploads/2024/08/Transparent-Cats-2-e1720643829976-resized.png" alt="Olivia" class="team-member-image active">
+                        <img src="https://www.aspca.org/sites/default/files/cat-care_general-cat-care_body1-left.jpg" alt="Olivia" class="team-member-image">
+                        <img src="https://vetmarlborough.co.nz/wp-content/uploads/cat-facts.jpg" alt="Olivia" class="team-member-image">
+                    </div>
+                    <div class="team-member-content">
+                        <h3>Cat miw</h3>
+                        <div class="team-member-title">Pastry Chef</div>
+                        <p>miw creates our handcrafted pastries with love and artisanal techniques.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="team-member-images">
+                        <img src="https://headsupfortails.com/cdn/shop/articles/How_to_Calculate_Your_Cat_s_Age_in_Human_Years_large.jpg?v=1738042061" alt="James" class="team-member-image active">
+                        <img src="https://headsupfortails.com/cdn/shop/articles/Cat_s_Mind_large.jpg?v=1624444348" alt="James" class="team-member-image">
+                        <img src="https://headsupfortails.com/cdn/shop/articles/Blog_Indiecat-01_large.jpg?v=1721106991" alt="James" class="team-member-image">
+                    </div>
+                    <div class="team-member-content">
+                        <h3>Cat meow</h3>
+                        <div class="team-member-title">Customer Experience Manager</div>
+                        <p>meow ensures that every visit to our café exceeds your expectations.</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="calculator">
-        <div class="calc-container">
-            <h2>Рассчитать стоимость</h2>
-            <select id="repair-type">
-                <option value="10000">Ремонт телефона</option>
-                <option value="15000">Ремонт ноутбука</option>
-                <option value="20000">Ремонт бытовой техники</option>
-            </select>
-            <input type="number" id="area" placeholder="Площадь (м², если применимо)">
-            <button onclick="calculateCost()">Рассчитать</button>
-            <div id="calc-result"></div>
+    <!-- History & Address Section -->
+    <section id="history" class="section history">
+        <div class="history-bg">
+            <img src="/api/placeholder/1600/1000" alt="Café Interior">
+        </div>
+        <div class="history-overlay"></div>
+        <div class="container">
+            <div class="history-content fade-in">
+                <h2>Our Story & Location</h2>
+                <p>Café Serenity was born in 2015 from a simple dream: to create a space where people could slow down, connect, and enjoy moments of tranquility in our fast-paced world. What started as a tiny corner shop with just three tables has grown into a beloved community hub, while still maintaining the warm, intimate atmosphere that our guests have come to love.</p>
+                <p>Our journey has been guided by our commitment to quality, sustainability, and community. We source our coffee beans directly from small-scale farmers, ensuring fair compensation and environmentally responsible practices. Our food is made from scratch using seasonal, local ingredients whenever possible.</p>
+                <div class="address-details">
+                    <h3>Find Us</h3>
+                    <div class="address-item">
+                        <div class="address-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>123 Serenity Lane, Harmony District, City</div>
+                    </div>
+                    <div class="address-item">
+                        <div class="address-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>(555) 123-4567</div>
+                    </div>
+                    <div class="address-item">
+                        <div class="address-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>hello@cafeserenity.com</div>
+                    </div>
+                    <div class="address-item">
+                        <div class="address-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>Monday-Friday: 7am-7pm<br>Saturday-Sunday: 8am-6pm</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contacts">
-        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Contacts+BG');"></div>
-        <div class="content">
-            <h2>Контакты 📲</h2>
-            <div class="block"><p>+7 (999) 777-88-99</p></div>
-            <div class="block"><p>elitefix@cool.ru</p></div>
-            <div class="block"><img src="https://via.placeholder.com/400x300?text=Map" alt="Map"></div>
+    <!-- Booking Section -->
+<section id="booking" class="section booking">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Reserve a Table</h2>
+            <p>Make your visit even more special by reserving your spot</p>
         </div>
-    </section>
+        <div class="booking-content">
+            <div class="booking-text fade-in">
+                <h3>Enjoy a Seamless Experience</h3>
+                <p>Whether you're planning a quiet breakfast, a business meeting, or a casual get-together with friends, we're here to make your experience memorable.</p>
+                <p>For immediate assistance or special requests, please call us at <strong>(555) 123-4567</strong> or email <strong>reservations@cafeserenity.com</strong>.</p>
+                <p>We recommend making reservations at least 24 hours in advance, especially for weekends and larger groups.</p>
+            </div>
+            <div class="booking-form fade-in">
+                <!-- Updated form with web3forms integration -->
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Access Key -->
+                    <input type="hidden" name="access_key" value="fc8231b9-505f-4daf-b2cd-f38dc83476fc">
 
-    <section id="delivery">
-        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Delivery+BG');"></div>
-        <div class="content">
-            <h2>Доставка 🚀</h2>
-            <div class="block"><p>Заберём твою технику</p></div>
-            <div class="block"><img src="https://via.placeholder.com/400x300?text=Delivery" alt="Delivery"></div>
-            <div class="block"><p>Вернем как новую за 24 часа</p></div>
-        </div>
-    </section>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="date" name="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="time" name="time" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select name="guests" class="form-control" required>
+                            <option value="" disabled selected>Number of Guests</option>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6+">6+ People</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" rows="3" placeholder="Special Requests (Optional)"></textarea>
+                    </div>
 
-    <section id="about">
-        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=About+BG');"></div>
-        <div class="content">
-            <h2>О нас 🌟</h2>
-            <div class="block"><p>Мы – будущее ремонта</p></div>
-            <div class="block"><img src="https://via.placeholder.com/400x300?text=Team" alt="Team"></div>
-            <div class="block"><span class="emoji-big">👨‍🔧</span></div>
-        </div>
-    </section>
+                    <!-- Honeypot Spam Protection -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-    <section id="reviews">
-        <div class="section-bg" style="background-image: url('https://via.placeholder.com/1920x1080?text=Reviews+BG');"></div>
-        <div class="content">
-            <h2>Отзывы 🔥</h2>
-            <div class="block"><p>"Лучший сервис ever!" – Макс</p></div>
-            <div class="block"><p>"Супер быстро!" – Аня</p></div>
-            <div class="block"><img src="https://via.placeholder.com/400x300?text=Happy" alt="Happy"></div>
-            <div class="block"><span class="emoji-big">⭐</span></div>
+                    <button type="submit" class="btn" style="width: 100%;">Reserve Now</button>
+                </form>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Café Serenity</h3>
+                    <p>Where every moment is a chance to slow down and savor life's simple pleasures.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#history">Our Story</a></li>
+                        <li><a href="#booking">Reservations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Serenity Lane, City</li>
+                        <li><i class="fas fa-phone-alt"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> hello@cafeserenity.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 7am-7pm, Sat-Sun: 8am-6pm</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on events, special offers, and new menu items.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Café Serenity. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        const slides = document.querySelectorAll('.header-slide');
-        let currentSlide = 0;
+        // Header Slideshow
+        function headerSlideshow() {
+            const slides = document.querySelectorAll('.header-slide');
+            let currentSlide = 0;
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 4000);
+        }
+
+        // Team Member Image Slideshow
+        function teamSlideshow() {
+            const teamMembers = document.querySelectorAll('.team-member');
+
+            teamMembers.forEach(member => {
+                const images = member.querySelectorAll('.team-member-image');
+                let currentImage = 0;
+
+                setInterval(() => {
+                    images[currentImage].classList.remove('active');
+                    currentImage = (currentImage + 1) % images.length;
+                    images[currentImage].classList.add('active');
+                }, 3000);
             });
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+        // Menu Tabs
+        function initMenuTabs() {
+            const tabs = document.querySelectorAll('.menu-tab');
+            const categories = document.querySelectorAll('.menu-category');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+
+                    // Hide all categories
+                    categories.forEach(cat => cat.classList.remove('active'));
+                    // Show selected category
+                    const category = document.querySelector(`.menu-category[data-category="${tab.dataset.category}"]`);
+                    category.classList.add('active');
+
+                    // Reset animations for fade-in elements
+                    const fadeElements = category.querySelectorAll('.menu-item');
+                    fadeElements.forEach((el, index) => {
+                        el.classList.add('fade-in');
+                        setTimeout(() => {
+                            el.classList.add('active');
+                        }, 100 * index);
+                    });
+                });
+            });
         }
 
-        showSlide(currentSlide);
-        setInterval(nextSlide, 3000);
+        // Intersection Observer for Fade-In Elements
+        function initFadeInObserver() {
+            const fadeElements = document.querySelectorAll('.fade-in');
 
-        function calculateCost() {
-            const repairType = parseInt(document.getElementById('repair-type').value);
-            const area = parseInt(document.getElementById('area').value) || 0;
-            const baseCost = repairType;
-            const totalCost = baseCost + (area * 500);
-            document.getElementById('calc-result').innerHTML = `Стоимость: ${totalCost.toLocaleString()} ₽`;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
         }
+
+        // Navbar Animation
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            const burger = document.querySelector('.burger');
+            const navLinks = document.querySelector('.nav-links');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            burger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Smooth Scrolling
+        function initSmoothScrolling() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                });
+            });
+        }
+
+        // Form Submission
+        function initFormSubmission() {
+            const bookingForm = document.getElementById('reservation-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your reservation request! We will contact you shortly to confirm.');
+                    this.reset();
+                });
+            }
+
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to our newsletter!');
+                    this.reset();
+                });
+            }
+        }
+
+        // Init All Functions
+        document.addEventListener('DOMContentLoaded', function() {
+            headerSlideshow();
+            teamSlideshow();
+            initMenuTabs();
+            initFadeInObserver();
+            initNavbar();
+            initSmoothScrolling();
+            initFormSubmission();
+        });
     </script>
 </body>
 </html>
