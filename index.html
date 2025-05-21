@@ -1,353 +1,762 @@
-<!DOCTYPE html>
+/* Контакты */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: white;
+            transform: skewY(2deg);
+            z-index: 1;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form {
+            flex: 0 0 55%;
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .contact-details {
+            flex: 0 0 40%;
+            padding: 40px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Строй Эксперт | Надежное строительство</title>
+    <title>КабельПром - Кабельно-проводниковая продукция оптом</title>
     <style>
-        :root {
-            --primary: #e8a012;
-            --dark: #1a1a1a;
-            --light: #f9f9f9;
-            --gray: #777777;
-            --transition: all 0.3s ease;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        /* Общие стили */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Arial', sans-serif;
         }
 
         body {
-            color: var(--dark);
+            color: #333;
             line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        img {
-            max-width: 100%;
+            overflow-x: hidden;
         }
 
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 20px;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 24px;
-            background: var(--primary);
+            background-color: #e74c3c;
             color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            border-radius: 4px;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
         }
 
         .btn:hover {
-            background: #d69000;
-            transform: translateY(-2px);
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(192, 57, 43, 0.4);
         }
 
-        /* Header */
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(192, 57, 43, 0.4);
+        }
+
+        /* Анимации для элементов при прокрутке */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Шапка */
         header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 100;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(44, 62, 80, 0.98);
+            padding: 5px 0;
+        }
+
+        header.scrolled .logo-text {
+            color: #fff;
+        }
+
+        header.scrolled .logo-text span {
+            color: #e74c3c;
+        }
+
+        header.scrolled .phone {
+            color: #fff;
+        }
+
+        header.scrolled .email {
+            color: #bdc3c7;
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 15px 0;
+            transition: all 0.3s ease;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--dark);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        nav ul {
             display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .logo-text span {
+            color: #e74c3c;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .phone {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .phone::before {
+            content: "\1F4DE";
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .phone:hover {
+            color: #e74c3c;
+            transform: translateX(-3px);
+        }
+
+        .email {
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .email::before {
+            content: "\2709";
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .email:hover {
+            color: #e74c3c;
+        }
+
+        /* Навигация */
+        nav {
+            background-color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: #1a2530;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu {
             list-style: none;
+            display: flex;
         }
 
-        nav ul li {
-            margin-left: 2rem;
+        .menu li {
+            position: relative;
         }
 
-        nav ul li a {
-            color: var(--dark);
+        .menu a {
+            color: white;
             text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            position: relative;
             font-weight: 500;
-            transition: var(--transition);
         }
 
-        nav ul li a:hover {
-            color: var(--primary);
+        .menu a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: #e74c3c;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800');
+        .menu a:hover {
+            background-color: #34495e;
+            color: #e74c3c;
+        }
+
+        .menu a:hover::after {
+            width: 70%;
+        }
+
+        /* Гамбургер-меню */
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 24px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: #e74c3c;
+        }
+
+        /* Баннер */
+        .banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/500');
             background-size: cover;
             background-position: center;
-            display: flex;
-            align-items: center;
             color: white;
-            margin-bottom: 4rem;
-        }
-
-        .hero-content {
-            max-width: 650px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 0;
-        }
-
-        .section-title {
             text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-title .divider {
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .about-img {
-            flex: 1;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 0;
-            background-color: var(--light);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 6rem 0;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
+            padding: 180px 0 130px;
+            margin-top: 82px;
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
-            height: 300px;
         }
 
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-overlay {
+        .banner::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
+            background: linear-gradient(45deg, rgba(231, 76, 60, 0.4), rgba(41, 128, 185, 0.4));
+            opacity: 0.8;
+            z-index: 1;
         }
 
-        .project-card:hover .project-overlay {
+        .banner .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.3s;
+            animation-fill-mode: both;
+            line-height: 1.8;
+        }
+
+        .banner .btn {
+            animation: fadeInUp 1s ease-out 0.6s;
+            animation-fill-mode: both;
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Преимущества */
+        .advantages {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advantages::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #f9f9f9;
+            transform: skewY(-2deg);
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #2c3e50;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            border-radius: 2px;
+        }
+
+        .advantages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .advantage-item {
+            width: 23%;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .advantage-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .advantage-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .advantage-item:hover::before {
             opacity: 1;
         }
 
-        .project-card:hover .project-img {
-            transform: scale(1.1);
-        }
-
-        .project-overlay h3 {
+        .advantage-item:hover .advantage-icon,
+        .advantage-item:hover .advantage-title,
+        .advantage-item:hover p {
             color: white;
-            margin-bottom: 1rem;
         }
 
-        .project-overlay .btn {
-            padding: 8px 16px;
+        .advantage-icon {
+            font-size: 48px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
         }
 
-        /* Testimonials */
-        .testimonials {
-            padding: 6rem 0;
-            background-color: var(--light);
+        .advantage-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: all 0.4s ease;
         }
 
-        .testimonials-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .advantage-item p {
+            transition: all 0.4s ease;
+            font-size: 16px;
+            line-height: 1.6;
         }
 
-        .testimonial {
+        /* Категории продукции */
+        .products {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
             background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin: 2rem 0;
+            transform: skewY(2deg);
+            z-index: 1;
         }
 
-        .testimonial-content {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: var(--gray);
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
         }
 
-        .testimonial-author {
+        .product-category {
+            width: calc(33.333% - 20px);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-category:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-category:hover .product-image::before {
+            opacity: 0.8;
+        }
+
+        .product-category:hover .product-image::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .product-image {
+            height: 240px;
+            background-position: center;
+            background-size: cover;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #e74c3c, #3498db);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .product-image::after {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            font-size: 40px;
+            color: white;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 2;
         }
 
-        .author-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
+        .product-info {
+            padding: 25px;
+            background-color: white;
+            position: relative;
         }
 
-        .author-info h4 {
-            margin-bottom: 0.3rem;
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        .author-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
+        .product-category:hover .product-title {
+            color: #e74c3c;
         }
 
-        /* Contact Section */
+        .product-description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .product-category .btn {
+            display: inline-block;
+            transform: translateY(0);
+            transition: all 0.4s ease;
+        }
+
+        .product-category:hover .btn {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        /* О компании */
+        .about {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #f9f9f9;
+            transform: skewY(-2deg);
+            z-index: 1;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-image {
+            flex: 0 0 45%;
+            height: 400px;
+            background-position: center;
+            background-size: cover;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(231, 76, 60, 0.6), rgba(41, 128, 185, 0.6));
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-image:hover::before {
+            opacity: 0.7;
+        }
+
+        .about-text {
+            flex: 0 0 50%;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .about-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .about-text .btn {
+            margin-top: 15px;
+        }
+
+        /* Контакты */
         .contact {
-            padding: 6rem 0;
+            padding: 60px 0;
         }
 
         .contact-content {
             display: flex;
-            gap: 4rem;
+            gap: 40px;
         }
 
         .contact-form {
-            flex: 1;
+            flex: 0 0 55%;
+        }
+
+        .contact-details {
+            flex: 0 0 40%;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         .form-group input,
@@ -356,101 +765,180 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 1rem;
         }
 
         .form-group textarea {
-            height: 150px;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-right: 1rem;
+            height: 120px;
         }
 
         .contact-details h4 {
-            margin-bottom: 0.5rem;
+            font-size: 20px;
+            margin-bottom: 15px;
         }
 
         .contact-details p {
-            color: var(--gray);
+            margin-bottom: 10px;
         }
 
-        /* Footer */
+        .contact-details i {
+            margin-right: 10px;
+            color: #e74c3c;
+        }
+
+        /* Футер */
         footer {
-            background: var(--dark);
+            background-color: #2c3e50;
             color: white;
-            padding: 3rem 0;
+            padding: 40px 0;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+        .footer-section {
+            flex: 0 0 30%;
         }
 
-        .footer-column p {
-            margin-bottom: 1rem;
-            opacity: 0.8;
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
         }
 
-        .footer-column ul {
+        .footer-links {
             list-style: none;
         }
 
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
+        .footer-links li {
+            margin-bottom: 10px;
         }
 
-        .footer-column ul li a {
-            color: white;
+        .footer-links a {
+            color: #ecf0f1;
             text-decoration: none;
-            opacity: 0.8;
-            transition: var(--transition);
+            transition: color 0.3s;
         }
 
-        .footer-column ul li a:hover {
-            opacity: 1;
-            color: var(--primary);
+        .footer-links a:hover {
+            color: #e74c3c;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #e74c3c;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-            font-size: 0.9rem;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            margin-top: 30px;
         }
 
-        /* Responsive */
+        /* Кнопка вверх */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #e74c3c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Модальное окно */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 2000;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+
+        /* Адаптивная вёрстка */
         @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
+            .advantage-item {
+                width: 48%;
             }
 
+            .product-category {
+                width: calc(50% - 10px);
+            }
+
+            .about-content,
             .contact-content {
                 flex-direction: column;
             }
 
-            .hero h1 {
-                font-size: 2.8rem;
+            .about-image {
+                height: 250px;
+                margin-bottom: 20px;
+            }
+
+            .footer-content {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .footer-section {
+                flex: 0 0 45%;
             }
         }
 
@@ -460,317 +948,2139 @@
                 text-align: center;
             }
 
-            nav ul {
-                margin-top: 1rem;
+            .contact-info {
+                margin-top: 15px;
+                text-align: center;
             }
 
-            nav ul li {
-                margin-left: 1rem;
-                margin-right: 1rem;
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .banner {
+                padding: 120px 0 70px;
+                margin-top: 132px;
+            }
+
+            .banner h1 {
+                font-size: 32px;
+            }
+
+            .advantage-item {
+                width: 100%;
+            }
+
+            .product-category {
+                width: 100%;
+            }
+
+            .footer-section {
+                flex: 0 0 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Шапка сайта -->
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">Строй<span>Эксперт</span></a>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Главная</a></li>
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#services">Услуги</a></li>
-                        <li><a href="#projects">Проекты</a></li>
-                        <li><a href="#contact">Контакты</a></li>
-                    </ul>
-                </nav>
+                <div class="logo">
+                    <div class="logo-text">Кабель<span>Пром</span></div>
+                </div>
+                <div class="contact-info">
+                    <a href="tel:+79001234567" class="phone">+7 (900) 123-45-67</a>
+                    <span class="email">info@kabelprom.ru</span>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- Навигационное меню -->
+    <nav>
         <div class="container">
-            <div class="hero-content">
-                <h1>Строим будущее, соблюдая традиции</h1>
-                <p>Мы — команда профессионалов с многолетним опытом в строительстве жилых и коммерческих объектов любой сложности. Качество, надежность и точность в каждой детали.</p>
-                <a href="#contact" class="btn">Бесплатная консультация</a>
+            <div class="nav-container">
+                <div class="menu-toggle">&#9776;</div>
+                <ul class="menu">
+                    <li><a href="#products">Продукция</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Баннер -->
+    <section class="banner">
+        <div class="container">
+            <h1>Кабельно-проводниковая продукция оптом</h1>
+            <p>Широкий ассортимент качественной кабельной продукции от ведущих производителей. Доставка по всей России.</p>
+            <a href="#contact" class="btn">Получить консультацию</a>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <h2 class="section-title">Наши преимущества</h2>
+            <div class="advantages-container">
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#10004;</div>
+                    <h3 class="advantage-title">Качественная продукция</h3>
+                    <p>Только сертифицированные товары от проверенных производителей</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#8364;</div>
+                    <h3 class="advantage-title">Выгодные цены</h3>
+                    <p>Работаем напрямую с заводами, без посредников</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#128666;</div>
+                    <h3 class="advantage-title">Быстрая доставка</h3>
+                    <p>Доставляем товар в кратчайшие сроки по всей России</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#128100;</div>
+                    <h3 class="advantage-title">Опытные специалисты</h3>
+                    <p>Профессиональная консультация и помощь в выборе</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Категории продукции -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Наша продукция</h2>
+            <div class="product-grid">
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Силовые кабели</h3>
+                        <p class="product-description">Кабели для передачи и распределения электроэнергии в стационарных установках</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Контрольные кабели</h3>
+                        <p class="product-description">Для систем контроля и управления технологическими процессами</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Провода и шнуры</h3>
+                        <p class="product-description">Для электропроводок и подключения бытовых электроприборов</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Кабели связи</h3>
+                        <p class="product-description">Для передачи информации, сигналов и данных</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Огнестойкие кабели</h3>
+                        <p class="product-description">Кабели, сохраняющие работоспособность в условиях пожара</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Специальные кабели</h3>
+                        <p class="product-description">Для особых условий эксплуатации и специфических задач</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О компании -->
     <section class="about" id="about">
         <div class="container">
-            <div class="section-title">
-                <h2>О Компании</h2>
-                <div class="divider"></div>
-            </div>
+            <h2 class="section-title">О компании</h2>
             <div class="about-content">
-                <div class="about-img">
-                    <img src="/api/placeholder/600/400" alt="О компании СтройЭксперт">
-                </div>
+                <div class="about-image" style="background-image: url('/api/placeholder/500/300');"></div>
                 <div class="about-text">
-                    <h3>15 лет безупречной репутации</h3>
-                    <p>Компания «СтройЭксперт» основана в 2010 году и за время работы зарекомендовала себя как надежный партнер в сфере строительства. Мы специализируемся на возведении жилых комплексов, коммерческих зданий и промышленных объектов.</p>
-                    <p>Наша команда состоит из 200+ опытных специалистов, включая инженеров, архитекторов, проектировщиков и рабочих различных строительных специальностей. За время работы мы реализовали более 150 проектов различной сложности.</p>
-                    <p>В своей работе мы используем только сертифицированные материалы и современное оборудование, что позволяет добиваться высокого качества при оптимальных сроках строительства.</p>
-                    <a href="#services" class="btn">Наши услуги</a>
+                    <h3>КабельПром - надежный поставщик кабельно-проводниковой продукции</h3>
+                    <p>Наша компания специализируется на поставках широкого ассортимента кабельно-проводниковой продукции для различных отраслей промышленности и строительства. Мы сотрудничаем только с проверенными производителями, что гарантирует высокое качество предлагаемых товаров.</p>
+                    <p>За годы работы мы наладили прочные связи с ведущими заводами-изготовителями, что позволяет нам предлагать конкурентоспособные цены и минимальные сроки поставки.</p>
+                    <p>Наши специалисты всегда готовы помочь вам с выбором оптимального решения для ваших задач.</p>
+                    <a href="#contact" class="btn">Связаться с нами</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Наши Услуги</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏗️</div>
-                    <h3>Жилищное строительство</h3>
-                    <p>Строительство частных домов, многоквартирных жилых комплексов и элитного жилья с полным комплексом отделочных работ.</p>
-                    <a href="#contact" class="btn">Подробнее</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3>Коммерческое строительство</h3>
-                    <p>Возведение офисных зданий, торговых центров, гостиниц и других объектов коммерческой недвижимости.</p>
-                    <a href="#contact" class="btn">Подробнее</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏭</div>
-                    <h3>Промышленное строительство</h3>
-                    <p>Строительство заводов, фабрик, складских помещений и других промышленных объектов с учетом всех технологических требований.</p>
-                    <a href="#contact" class="btn">Подробнее</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📝</div>
-                    <h3>Проектирование</h3>
-                    <p>Разработка проектной документации любой сложности, включая архитектурное проектирование и инженерные системы.</p>
-                    <a href="#contact" class="btn">Подробнее</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>Ремонт и реконструкция</h3>
-                    <p>Капитальный ремонт, реконструкция и модернизация существующих зданий и сооружений.</p>
-                    <a href="#contact" class="btn">Подробнее</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌳</div>
-                    <h3>Благоустройство территории</h3>
-                    <p>Комплексное благоустройство прилегающих территорий, включая ландшафтный дизайн и организацию парковочных зон.</p>
-                    <a href="#contact" class="btn">Подробнее</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>Наши Проекты</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Жилой комплекс Гармония" class="project-img">
-                    <div class="project-overlay">
-                        <h3>ЖК "Гармония"</h3>
-                        <a href="#" class="btn">Подробнее</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Бизнес-центр Меркурий" class="project-img">
-                    <div class="project-overlay">
-                        <h3>БЦ "Меркурий"</h3>
-                        <a href="#" class="btn">Подробнее</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Торговый центр Панорама" class="project-img">
-                    <div class="project-overlay">
-                        <h3>ТЦ "Панорама"</h3>
-                        <a href="#" class="btn">Подробнее</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Складской комплекс Логистик" class="project-img">
-                    <div class="project-overlay">
-                        <h3>СК "Логистик"</h3>
-                        <a href="#" class="btn">Подробнее</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Гостиница Континенталь" class="project-img">
-                    <div class="project-overlay">
-                        <h3>Гостиница "Континенталь"</h3>
-                        <a href="#" class="btn">Подробнее</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="/api/placeholder/400/300" alt="Коттеджный поселок Усадьба" class="project-img">
-                    <div class="project-overlay">
-                        <h3>КП "Усадьба"</h3>
-                        <a href="#" class="btn">Подробнее</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Отзывы Клиентов</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="testimonials-container">
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"Работа с компанией «СтройЭксперт» оставила только положительные впечатления. Проект был выполнен в срок, а качество строительства превзошло наши ожидания. Отдельная благодарность команде за оперативную реакцию на все наши пожелания."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="/api/placeholder/100/100" alt="Иван Петров" class="author-img">
-                        <div class="author-info">
-                            <h4>Иван Петров</h4>
-                            <p>Директор ООО "МегаСтрой"</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        <p>"Спасибо команде «СтройЭксперт» за профессионализм и ответственный подход к делу. Мы высоко ценим внимание к деталям и гибкость в решении возникающих вопросов. Объект был сдан в эксплуатацию даже раньше запланированного срока."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="/api/placeholder/100/100" alt="Елена Сергеева" class="author-img">
-                        <div class="author-info">
-                            <h4>Елена Сергеева</h4>
-                            <p>Генеральный директор ТЦ "Панорама"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
+    <!-- Контакты -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-title">
-                <h2>Свяжитесь С Нами</h2>
-                <div class="divider"></div>
-            </div>
+            <h2 class="section-title">Свяжитесь с нами</h2>
             <div class="contact-content">
                 <div class="contact-form">
-                    <form>
+                    <form id="contact-form">
                         <div class="form-group">
-                            <label for="name">Имя</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Телефон</label>
-                            <input type="tel" id="phone" required>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
                         </div>
                         <div class="form-group">
                             <label for="message">Сообщение</label>
-                            <textarea id="message" required></textarea>
+                            <textarea id="message" name="message"></textarea>
                         </div>
-                        <button type="submit" class="btn">Отправить</button>
+                        <button type="submit" class="btn">Отправить заявку</button>
                     </form>
                 </div>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-details">
-                            <h4>Адрес</h4>
-                            <p>г. Москва, ул. Строителей, д. 10, офис 505</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-details">
-                            <h4>Телефон</h4>
-                            <p>+7 (495) 123-45-67</p>
-                            <p>+7 (495) 765-43-21</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>info@stroyexpert.ru</p>
-                            <p>sales@stroyexpert.ru</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div class="contact-details">
-                            <h4>Режим работы</h4>
-                            <p>Пн-Пт: 9:00 - 18:00</p>
-                            <p>Сб-Вс: Выходной</p>
-                        </div>
+                <div class="contact-details">
+                    <h4>Контактная информация</h4>
+                    <p><i>&#128222;</i> +7 (900) 123-45-67</p>
+                    <p><i>&#9993;</i> info@kabelprom.ru</p>
+                    <p><i>&#128205;</i> г. Москва, ул. Примерная, д. 123</p>
+                    <p><i>&#128338;</i> Пн-Пт: 9:00 - 18:00</p>
+                    <div class="social-links">
+                        <a href="#"><i>&#128279;</i></a>
+                        <a href="#"><i>&#128279;</i></a>
+                        <a href="#"><i>&#128279;</i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Футер -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>О СтройЭксперт</h3>
-                    <p>Компания «СтройЭксперт» — ваш надежный партнер в сфере строительства. Мы предлагаем полный комплекс услуг от проектирования до сдачи объекта "под ключ".</p>
+                <div class="footer-section">
+                    <h3>КабельПром</h3>
+                    <p>Ваш надежный поставщик кабельно-проводниковой продукции с 2010 года.</p>
                 </div>
-                <div class="footer-column">
-                    <h3>Услуги</h3>
-                    <ul>
-                        <li><a href="#services">Жилищное строительство</a></li>
-                        <li><a href="#services">Коммерческое строительство</a></li>
-                        <li><a href="#services">Промышленное строительство</a></li>
-                        <li><a href="#services">Проектирование</a></li>
-                        <li><a href="#services">Ремонт и реконструкция</a></li>
+                <div class="footer-section">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#products">Продукция</a></li>
+                        <li><a href="#advantages">Преимущества</a></li>
+                        <li><a href="#about">О компании</a></li>
+                        <li><a href="#contact">Контакты</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer-section">
                     <h3>Контакты</h3>
-                    <ul>
-                        <li><a href="#">г. Москва, ул. Строителей, д. 10</a></li>
-                        <li><a href="#">+7 (495) 123-45-67</a></li>
-                        <li><a href="#">info@stroyexpert.ru</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Следите за нами</h3>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">VK</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                    </ul>
+                    <p>г. Москва, ул. Примерная, д. 123</p>
+                    <p>+7 (900) 123-45-67</p>
+                    <p>info@kabelprom.ru</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>© 2025 СтройЭксперт. Все права защищены.</p>
+                <p>&copy; 2025 КабельПром. Все права защищены.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Кнопка "Вверх" -->
+    <a href="#" class="back-to-top" id="back-to-top">&#8593;</a>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3>Запросить стоимость</h3>
+            <p>Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время для уточнения деталей и расчета стоимости.</p>
+            <form id="modal-form">
+                <div class="form-group">
+                    <label for="modal-name">Ваше имя</label>
+                    <input type="text" id="modal-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-phone">Телефон</label>
+                    <input type="tel" id="modal-phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-product">Интересующая продукция</label>
+                    <input type="text" id="modal-product" name="product">
+                </div>
+                <button type="submit" class="btn">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Мобильное меню
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('active');
+                this.textContent = menu.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Анимация элементов при прокрутке
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            const header = document.querySelector('header');
+            const nav = document.querySelector('nav');
+
+            function checkScroll() {
+                // Изменение стиля шапки при прокрутке
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                    nav.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                    nav.classList.remove('scrolled');
+                }
+
+                // Анимация элементов при прокрутке
+                animateElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (elementTop < windowHeight - 50) {
+                        element.classList.add('visible');
+                    }
+                });
+
+                // Кнопка "Вверх"
+                if (window.pageYOffset > 500) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            }
+
+            // Инициализация анимаций при загрузке
+            setTimeout(function() {
+                checkScroll();
+            }, 100);
+
+            // Обработка события прокрутки
+            window.addEventListener('scroll', checkScroll);
+
+            // Плавная прокрутка к якорям с учетом высоты шапки
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    if (this.getAttribute('href') === '#') return;
+
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        // Анимированная прокрутка к целевому элементу
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Добавление параметра в URL (для истории)
+                        history.pushState(null, null, this.getAttribute('href'));
+                    }
+
+                    // Закрыть мобильное меню при нажатии на ссылку
+                    menu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                });
+            });
+
+            // Кнопка "Вверх"
+            const backToTop = document.getElementById('back-to-top');
+
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Обработка формы контактов с анимацией
+            const contactForm = document.getElementById('contact-form');
+            const modalForm = document.getElementById('modal-form');
+
+            function handleFormSubmit(form, successMessage) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Анимация отправки формы
+                    const submitBtn = this.querySelector('.btn');
+                    const originalText = submitBtn.textContent;
+
+                    submitBtn.textContent = 'Отправка...';
+                    submitBtn.style.pointerEvents = 'none';
+                    submitBtn.style.opacity = '0.7';
+
+                    // Имитация отправки данных (задержка)
+                    setTimeout(function() {
+                        alert(successMessage);
+                        form.reset();
+
+                        // Восстановление кнопки
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.pointerEvents = 'auto';
+                        submitBtn.style.opacity = '1';
+
+                        // Закрытие модального окна, если это форма из модального окна
+                        if (form.id === 'modal-form') {
+                            closeModal();
+                        }
+                    }, 1500);
+                });
+            }
+
+            handleFormSubmit(contactForm, 'Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+            handleFormSubmit(modalForm, 'Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+
+            // Добавляем класс с анимацией к элементам
+            const advantageItems = document.querySelectorAll('.advantage-item');
+            const productItems = document.querySelectorAll('.product-category');
+            const sectionTitles = document.querySelectorAll('.section-title');
+
+            sectionTitles.forEach((title, index) => {
+                title.classList.add('animate-on-scroll');
+            });
+
+            advantageItems.forEach((item, index) => {
+                item.classList.add('animate-on-scroll');        /* Контакты */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: white;
+            transform: skewY(2deg);
+            z-index: 1;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form {
+            flex: 0 0 55%;
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .contact-details {
+            flex: 0 0 40%;
+            padding: 40px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-details::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            top: -50%;
+            left: -50%;
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+            outline: none;
+            background-color: #fff;
+        }
+
+        .form-group input:focus + label,
+        .form-group textarea:focus + label {
+            color: #e74c3c;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+            border-radius: 20px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #aaa;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus::placeholder,
+        .form-group textarea:focus::placeholder {
+            opacity: 0.7;
+        }
+
+        .contact-details h4 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 15px;
+            z-index: 1;
+        }
+
+        .contact-details h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .contact-details p {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-details p:hover {
+            transform: translateX(5px);
+            color: #e74c3c;
+        }
+
+        .contact-details i {
+            margin-right: 15px;
+            color: #e74c3c;
+            font-size: 20px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            background-color: #e74c3c;
+            transform: translateY(-5px);
+        }<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КабельПром - Кабельно-проводниковая продукция оптом</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(192, 57, 43, 0.4);
+        }
+
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(192, 57, 43, 0.4);
+        }
+
+        /* Анимации для элементов при прокрутке */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Шапка */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(44, 62, 80, 0.98);
+            padding: 5px 0;
+        }
+
+        header.scrolled .logo-text {
+            color: #fff;
+        }
+
+        header.scrolled .logo-text span {
+            color: #e74c3c;
+        }
+
+        header.scrolled .phone {
+            color: #fff;
+        }
+
+        header.scrolled .email {
+            color: #bdc3c7;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .logo-text span {
+            color: #e74c3c;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .phone {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .phone::before {
+            content: "\1F4DE";
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .phone:hover {
+            color: #e74c3c;
+            transform: translateX(-3px);
+        }
+
+        .email {
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .email::before {
+            content: "\2709";
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .email:hover {
+            color: #e74c3c;
+        }
+
+        /* Навигация */
+        nav {
+            background-color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: #1a2530;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .menu li {
+            position: relative;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background-color: #e74c3c;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .menu a:hover {
+            background-color: #34495e;
+            color: #e74c3c;
+        }
+
+        .menu a:hover::after {
+            width: 70%;
+        }
+
+        /* Гамбургер-меню */
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 24px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: #e74c3c;
+        }
+
+        /* Баннер */
+        .banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/500');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 0 130px;
+            margin-top: 82px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(231, 76, 60, 0.4), rgba(41, 128, 185, 0.4));
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .banner .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.3s;
+            animation-fill-mode: both;
+            line-height: 1.8;
+        }
+
+        .banner .btn {
+            animation: fadeInUp 1s ease-out 0.6s;
+            animation-fill-mode: both;
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Преимущества */
+        .advantages {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advantages::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #f9f9f9;
+            transform: skewY(-2deg);
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #2c3e50;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            border-radius: 2px;
+        }
+
+        .advantages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .advantage-item {
+            width: 23%;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .advantage-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .advantage-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .advantage-item:hover::before {
+            opacity: 1;
+        }
+
+        .advantage-item:hover .advantage-icon,
+        .advantage-item:hover .advantage-title,
+        .advantage-item:hover p {
+            color: white;
+        }
+
+        .advantage-icon {
+            font-size: 48px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .advantage-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: all 0.4s ease;
+        }
+
+        .advantage-item p {
+            transition: all 0.4s ease;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Категории продукции */
+        .products {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: white;
+            transform: skewY(2deg);
+            z-index: 1;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-category {
+            width: calc(33.333% - 20px);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-category:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-category:hover .product-image::before {
+            opacity: 0.8;
+        }
+
+        .product-category:hover .product-image::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .product-image {
+            height: 240px;
+            background-position: center;
+            background-size: cover;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #e74c3c, #3498db);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .product-image::after {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            font-size: 40px;
+            color: white;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 25px;
+            background-color: white;
+            position: relative;
+        }
+
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .product-category:hover .product-title {
+            color: #e74c3c;
+        }
+
+        .product-description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .product-category .btn {
+            display: inline-block;
+            transform: translateY(0);
+            transition: all 0.4s ease;
+        }
+
+        .product-category:hover .btn {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+        }
+
+        /* О компании */
+        .about {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #f9f9f9;
+            transform: skewY(-2deg);
+            z-index: 1;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-image {
+            flex: 0 0 45%;
+            height: 400px;
+            background-position: center;
+            background-size: cover;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(231, 76, 60, 0.6), rgba(41, 128, 185, 0.6));
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-image:hover::before {
+            opacity: 0.7;
+        }
+
+        .about-text {
+            flex: 0 0 50%;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .about-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .about-text .btn {
+            margin-top: 15px;
+        }
+
+        /* Контакты */
+        .contact {
+            padding: 60px 0;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-form {
+            flex: 0 0 55%;
+        }
+
+        .contact-details {
+            flex: 0 0 40%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+        }
+
+        .contact-details h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .contact-details p {
+            margin-bottom: 10px;
+        }
+
+        .contact-details i {
+            margin-right: 10px;
+            color: #e74c3c;
+        }
+
+        /* Футер */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #2c3e50;
+            transform: skewY(-2deg);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section {
+            flex: 0 0 30%;
+            position: relative;
+        }
+
+        .footer-section::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e74c3c;
+            transition: width 0.4s ease;
+        }
+
+        .footer-section:hover::after {
+            width: 50px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #e74c3c;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            transform: translateX(8px);
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #e74c3c;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #e74c3c;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links-footer a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links-footer a:hover {
+            color: #fff;
+            background-color: #e74c3c;
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .copyright p {
+            color: #bdc3c7;
+            font-size: 15px;
+        }
+
+        .copyright a {
+            color: #e74c3c;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: #fff;
+        }
+
+        /* Кнопка вверх */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #e74c3c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.5);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            animation: pulse 2s infinite;
+        }
+
+        .back-to-top:hover {
+            background-color: #c0392b;
+            transform: translateY(-5px);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+                transform: scale(1);
+            }
+        }
+
+        /* Модальное окно */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 2000;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 550px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(50px) scale(0.95);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #e74c3c;
+            background-color: #eee;
+            transform: rotate(90deg);
+        }
+
+        .modal-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .modal-content p {
+            margin-bottom: 25px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Адаптивная вёрстка */
+        @media (max-width: 992px) {
+            .advantage-item {
+                width: 48%;
+            }
+
+            .product-category {
+                width: calc(50% - 15px);
+            }
+
+            .about-content,
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                height: 350px;
+                margin-bottom: 30px;
+                width: 100%;
+            }
+
+            .contact-form,
+            .contact-details {
+                width: 100%;
+            }
+
+            .footer-content {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+
+            .footer-section {
+                flex: 0 0 45%;
+            }
+
+            .banner h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                margin-top: 15px;
+                text-align: center;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #2c3e50;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                animation: fadeIn 0.5s ease;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                position: relative;
+            }
+
+            .banner {
+                padding: 150px 0 100px;
+                margin-top: 132px;
+            }
+
+            .banner h1 {
+                font-size: 30px;
+            }
+
+            .advantage-item {
+                width: 100%;
+            }
+
+            .product-category {
+                width: 100%;
+            }
+
+            .footer-section {
+                flex: 0 0 100%;
+                margin-bottom: 30px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .about-text h3,
+            .contact-details h4 {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner h1 {
+                font-size: 26px;
+            }
+
+            .banner p {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .contact-form,
+            .contact-details {
+                padding: 25px;
+            }
+
+            .social-links a,
+            .social-links-footer a {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+
+        /* Дополнительные анимации */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">Кабель<span>Пром</span></div>
+                </div>
+                <div class="contact-info">
+                    <a href="tel:+79001234567" class="phone">+7 (900) 123-45-67</a>
+                    <span class="email">info@kabelprom.ru</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигационное меню -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="menu-toggle">&#9776;</div>
+                <ul class="menu">
+                    <li><a href="#products">Продукция</a></li>
+                    <li><a href="#advantages">Преимущества</a></li>
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Баннер -->
+    <section class="banner">
+        <div class="container">
+            <h1>Кабельно-проводниковая продукция оптом</h1>
+            <p>Широкий ассортимент качественной кабельной продукции от ведущих производителей. Доставка по всей России.</p>
+            <a href="#contact" class="btn">Получить консультацию</a>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <h2 class="section-title">Наши преимущества</h2>
+            <div class="advantages-container">
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#10004;</div>
+                    <h3 class="advantage-title">Качественная продукция</h3>
+                    <p>Только сертифицированные товары от проверенных производителей</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#8364;</div>
+                    <h3 class="advantage-title">Выгодные цены</h3>
+                    <p>Работаем напрямую с заводами, без посредников</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#128666;</div>
+                    <h3 class="advantage-title">Быстрая доставка</h3>
+                    <p>Доставляем товар в кратчайшие сроки по всей России</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">&#128100;</div>
+                    <h3 class="advantage-title">Опытные специалисты</h3>
+                    <p>Профессиональная консультация и помощь в выборе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Категории продукции -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Наша продукция</h2>
+            <div class="product-grid">
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Силовые кабели</h3>
+                        <p class="product-description">Кабели для передачи и распределения электроэнергии в стационарных установках</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Контрольные кабели</h3>
+                        <p class="product-description">Для систем контроля и управления технологическими процессами</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Провода и шнуры</h3>
+                        <p class="product-description">Для электропроводок и подключения бытовых электроприборов</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Кабели связи</h3>
+                        <p class="product-description">Для передачи информации, сигналов и данных</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Огнестойкие кабели</h3>
+                        <p class="product-description">Кабели, сохраняющие работоспособность в условиях пожара</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <div class="product-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Специальные кабели</h3>
+                        <p class="product-description">Для особых условий эксплуатации и специфических задач</p>
+                        <a href="#" class="btn" onclick="openModal(); return false;">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О компании -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">О компании</h2>
+            <div class="about-content">
+                <div class="about-image" style="background-image: url('/api/placeholder/500/300');"></div>
+                <div class="about-text">
+                    <h3>КабельПром - надежный поставщик кабельно-проводниковой продукции</h3>
+                    <p>Наша компания специализируется на поставках широкого ассортимента кабельно-проводниковой продукции для различных отраслей промышленности и строительства. Мы сотрудничаем только с проверенными производителями, что гарантирует высокое качество предлагаемых товаров.</p>
+                    <p>За годы работы мы наладили прочные связи с ведущими заводами-изготовителями, что позволяет нам предлагать конкурентоспособные цены и минимальные сроки поставки.</p>
+                    <p>Наши специалисты всегда готовы помочь вам с выбором оптимального решения для ваших задач.</p>
+                    <a href="#contact" class="btn">Связаться с нами</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить заявку</button>
+                    </form>
+                </div>
+                <div class="contact-details">
+                    <h4>Контактная информация</h4>
+                    <p><i>&#128222;</i> +7 (900) 123-45-67</p>
+                    <p><i>&#9993;</i> info@kabelprom.ru</p>
+                    <p><i>&#128205;</i> г. Москва, ул. Примерная, д. 123</p>
+                    <p><i>&#128338;</i> Пн-Пт: 9:00 - 18:00</p>
+                    <div class="social-links">
+                        <a href="#"><i>&#128279;</i></a>
+                        <a href="#"><i>&#128279;</i></a>
+                        <a href="#"><i>&#128279;</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>КабельПром</h3>
+                    <p>Ваш надежный поставщик кабельно-проводниковой продукции с 2010 года.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#products">Продукция</a></li>
+                        <li><a href="#advantages">Преимущества</a></li>
+                        <li><a href="#about">О компании</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>г. Москва, ул. Примерная, д. 123</p>
+                    <p>+7 (900) 123-45-67</p>
+                    <p>info@kabelprom.ru</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 КабельПром. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка "Вверх" -->
+    <a href="#" class="back-to-top" id="back-to-top">&#8593;</a>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3>Запросить стоимость</h3>
+            <p>Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время для уточнения деталей и расчета стоимости.</p>
+            <form id="modal-form">
+                <div class="form-group">
+                    <label for="modal-name">Ваше имя</label>
+                    <input type="text" id="modal-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-phone">Телефон</label>
+                    <input type="tel" id="modal-phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-product">Интересующая продукция</label>
+                    <input type="text" id="modal-product" name="product">
+                </div>
+                <button type="submit" class="btn">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Мобильное меню
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('active');
+            });
+
+            // Плавная прокрутка к якорям
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    if (this.getAttribute('href') === '#') return;
+
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    // Закрыть мобильное меню при нажатии на ссылку
+                    menu.classList.remove('active');
+                });
+            });
+
+            // Кнопка "Вверх"
+            const backToTop = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Обработка формы контактов
+            const contactForm = document.getElementById('contact-form');
+            const modalForm = document.getElementById('modal-form');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+                contactForm.reset();
+            });
+
+            modalForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+                modalForm.reset();
+                closeModal();
+            });
+        });
+
+        // Функции для модального окна
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Закрытие модального окна при клике вне его содержимого
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('modal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
