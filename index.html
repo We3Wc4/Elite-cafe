@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Крестики-Нолики Онлайн</title>
+    <title>Онлайн Крестики-Нолики | Играй с друзьями</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --dark-gray: #495057;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,645 +32,1028 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 500px;
-            width: 90%;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        header h1 i {
+            color: var(--primary-color);
+        }
+
+        .subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .game-container {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card, .room-card, .join-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .menu-card h2, .room-card h2, .join-card h2 {
+            margin-bottom: 25px;
+            color: var(--primary-color);
         }
 
         .btn {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            color: white;
-            font-size: 1.1rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: var(--transition);
+            margin: 10px 0;
+            width: 100%;
         }
 
-        .btn:hover {
+        .btn i {
+            font-size: 1rem;
+        }
+
+        .btn.primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn.primary:hover {
+            background-color: #3a5bef;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn.secondary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn.secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn.tertiary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: 1px solid var(--light-gray);
+        }
+
+        .btn.tertiary:hover {
+            background-color: #e2e6ea;
+            transform: translateY(-2px);
+        }
+
+        .btn.danger {
+            background-color: var(--danger-color);
+            color: var(--white);
+        }
+
+        .btn.danger:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn.small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            width: auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .players-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .player {
+            flex: 1;
+            padding: 15px;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .vs {
+            padding: 0 15px;
+            font-weight: bold;
+            color: var(--gray);
+        }
+
+        .room-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .input-group {
-            margin: 1rem 0;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 20px;
         }
 
         .input-group input {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
             font-size: 1rem;
+            margin-bottom: 15px;
         }
 
-        .input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .game-board {
-            display: none;
+        .waiting-message {
+            margin-top: 30px;
             text-align: center;
+            color: var(--gray);
+        }
+
+        .loader {
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .game-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-info {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .player-turn {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .game-status {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            height: 24px;
         }
 
         .board {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin: 2rem 0;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            width: 300px;
+            height: 300px;
+            margin: 20px 0;
         }
 
         .cell {
-            aspect-ratio: 1;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 12px;
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            min-height: 80px;
+            transition: var(--transition);
         }
 
         .cell:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+            background-color: #e2e6ea;
         }
 
-        .cell.disabled {
-            cursor: not-allowed;
-            opacity: 0.5;
+        .cell.x {
+            color: var(--primary-color);
         }
 
-        .game-info {
-            margin: 1rem 0;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            text-align: center;
+        .cell.o {
+            color: var(--success-color);
         }
 
-        .player-info {
+        .game-actions {
             display: flex;
-            justify-content: space-between;
-            margin: 1rem 0;
-            font-size: 1.1rem;
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        .room-code {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
+        footer {
             text-align: center;
-            font-family: monospace;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+            margin-top: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
         }
 
-        .back-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        footer i {
+            color: var(--danger-color);
         }
 
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .winner-announcement {
-            display: none;
+        .notification {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
             z-index: 1000;
-            justify-content: center;
-            align-items: center;
         }
 
-        .winner-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 3rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .winner-content h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .connection-methods {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        @media (min-width: 768px) {
-            .connection-methods {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .method-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .method-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .method-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            
-            h1 {
+            header h1 {
                 font-size: 2rem;
             }
             
-            .cell {
-                min-height: 60px;
-                font-size: 1.5rem;
+            .game-container {
+                padding: 20px;
+            }
+            
+            .menu-card, .room-card, .join-card {
+                padding: 20px;
+            }
+            
+            .board {
+                width: 280px;
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .players-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .player {
+                width: 100%;
+            }
+            
+            .room-actions, .game-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn.small {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 Крестики-Нолики</h1>
-        
-        <!-- Главное меню -->
-        <div id="main-menu" class="menu">
-            <div class="connection-methods">
-                <div class="method-card">
-                    <div class="method-icon">💻</div>
-                    <h3>С компьютера</h3>
-                    <p>Полная функциональность на большом экране</p>
+        <header>
+            <h1><i class="fas fa-times-circle"></i> Онлайн Крестики-Нолики <i class="far fa-circle"></i></h1>
+            <p class="subtitle">Играйте с друзьями в реальном времени</p>
+        </header>
+
+        <div class="game-container" id="game-container">
+            <div class="menu-screen" id="menu-screen">
+                <div class="menu-card">
+                    <h2>Создать или присоединиться</h2>
+                    <button id="create-room-btn" class="btn primary">
+                        <i class="fas fa-plus"></i> Создать комнату
+                    </button>
+                    <button id="join-room-btn" class="btn secondary">
+                        <i class="fas fa-user-friends"></i> Присоединиться
+                    </button>
+                    <button id="play-computer-btn" class="btn tertiary">
+                        <i class="fas fa-robot"></i> Играть с компьютером
+                    </button>
                 </div>
-                <div class="method-card">
-                    <div class="method-icon">📱</div>
-                    <h3>С телефона</h3>
-                    <p>Удобная мобильная версия</p>
+            </div>
+
+            <div class="room-screen hidden" id="room-screen">
+                <div class="room-card">
+                    <h2 id="room-title">Комната: <span id="room-id-display"></span></h2>
+                    <div class="players-info">
+                        <div class="player">
+                            <i class="fas fa-user"></i> <span id="player1-name">Ожидание игрока...</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="player">
+                            <i class="fas fa-user"></i> <span id="player2-name">Ожидание игрока...</span>
+                        </div>
+                    </div>
+                    <div class="room-actions">
+                        <button id="copy-link-btn" class="btn small">
+                            <i class="fas fa-copy"></i> Копировать ссылку
+                        </button>
+                        <button id="leave-room-btn" class="btn small danger">
+                            <i class="fas fa-sign-out-alt"></i> Покинуть комнату
+                        </button>
+                    </div>
+                    <div class="waiting-message" id="waiting-message">
+                        <p>Ожидаем второго игрока...</p>
+                        <div class="loader"></div>
+                    </div>
                 </div>
             </div>
-            
-            <button class="btn" onclick="showCreateRoom()">🏠 Создать комнату</button>
-            <button class="btn" onclick="showJoinRoom()">🚪 Присоединиться к комнате</button>
+
+            <div class="join-screen hidden" id="join-screen">
+                <div class="join-card">
+                    <h2>Присоединиться к комнате</h2>
+                    <div class="input-group">
+                        <input type="text" id="room-id-input" placeholder="Введите ID комнаты">
+                        <button id="join-room-confirm-btn" class="btn primary">
+                            <i class="fas fa-sign-in-alt"></i> Присоединиться
+                        </button>
+                    </div>
+                    <button id="back-to-menu-btn" class="btn secondary">
+                        <i class="fas fa-arrow-left"></i> Назад
+                    </button>
+                </div>
+            </div>
+
+            <div class="game-screen hidden" id="game-screen">
+                <div class="game-info">
+                    <div class="player-turn" id="player-turn">
+                        Ваш ход: <span id="current-player"></span>
+                    </div>
+                    <div class="game-status" id="game-status"></div>
+                </div>
+                <div class="board" id="board">
+                    <!-- Клетки будут добавлены через JS -->
+                </div>
+                <div class="game-actions">
+                    <button id="restart-game-btn" class="btn small">
+                        <i class="fas fa-redo"></i> Начать заново
+                    </button>
+                    <button id="exit-game-btn" class="btn small danger">
+                        <i class="fas fa-home"></i> В меню
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <!-- Создание комнаты -->
-        <div id="create-room" class="menu" style="display: none;">
-            <div class="input-group">
-                <label for="player-name">Ваше имя:</label>
-                <input type="text" id="player-name" placeholder="Введите ваше имя">
-            </div>
-            <button class="btn" onclick="createRoom()">🎯 Создать комнату</button>
-            <button class="back-btn" onclick="showMainMenu()">← Назад</button>
-        </div>
-
-        <!-- Присоединение к комнате -->
-        <div id="join-room" class="menu" style="display: none;">
-            <div class="input-group">
-                <label for="join-name">Ваше имя:</label>
-                <input type="text" id="join-name" placeholder="Введите ваше имя">
-            </div>
-            <div class="input-group">
-                <label for="room-id">Код комнаты:</label>
-                <input type="text" id="room-id" placeholder="Введите код комнаты">
-            </div>
-            <button class="btn" onclick="joinRoom()">🔗 Присоединиться</button>
-            <button class="back-btn" onclick="showMainMenu()">← Назад</button>
-        </div>
-
-        <!-- Ожидание игрока -->
-        <div id="waiting-room" class="game-board">
-            <h2>🎲 Комната создана!</h2>
-            <div class="room-code">
-                <strong>Код комнаты: <span id="room-code-display"></span></strong>
-            </div>
-            <p>Поделитесь этим кодом с другом чтобы он мог присоединиться</p>
-            <div class="game-info">
-                <p>⏳ Ожидание второго игрока...</p>
-            </div>
-            <button class="back-btn" onclick="leaveRoom()">← Покинуть комнату</button>
-        </div>
-
-        <!-- Игровое поле -->
-        <div id="game-board" class="game-board">
-            <div class="player-info">
-                <div>👤 <span id="player1-name">Игрок 1</span> (X)</div>
-                <div>👤 <span id="player2-name">Игрок 2</span> (O)</div>
-            </div>
-            
-            <div class="game-info">
-                <p id="turn-info">🎯 Ход игрока X</p>
-            </div>
-
-            <div class="board" id="board">
-                <button class="cell" onclick="makeMove(0)"></button>
-                <button class="cell" onclick="makeMove(1)"></button>
-                <button class="cell" onclick="makeMove(2)"></button>
-                <button class="cell" onclick="makeMove(3)"></button>
-                <button class="cell" onclick="makeMove(4)"></button>
-                <button class="cell" onclick="makeMove(5)"></button>
-                <button class="cell" onclick="makeMove(6)"></button>
-                <button class="cell" onclick="makeMove(7)"></button>
-                <button class="cell" onclick="makeMove(8)"></button>
-            </div>
-
-            <button class="back-btn" onclick="leaveRoom()">← Покинуть игру</button>
-        </div>
+        <footer>
+            <p>© 2023 Онлайн Крестики-Нолики | Сделано с <i class="fas fa-heart"></i> для игроков</p>
+        </footer>
     </div>
 
-    <!-- Окно победителя -->
-    <div id="winner-modal" class="winner-announcement">
-        <div class="winner-content">
-            <h2 id="winner-text">🎉</h2>
-            <button class="btn" onclick="newGame()">🔄 Новая игра</button>
-            <button class="back-btn" onclick="leaveRoom()">← В главное меню</button>
-        </div>
-    </div>
+    <div class="notification" id="notification"></div>
 
     <!-- Firebase SDK -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-app-compat.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-database-compat.min.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script>
-        // Firebase конфигурация
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyC2oMcl5rA1lzPfEHV_64Gbws6HY0aQnl0",
             authDomain: "tic-tac-toe-game-fabc6.firebaseapp.com",
             databaseURL: "https://tic-tac-toe-game-fabc6-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "tic-tac-toe-game-fabc6",
-            storageBucket: "tic-tac-toe-game-fabc6.firebasestorage.app",
+            storageBucket: "tic-tac-toe-game-fabc6.appspot.com",
             messagingSenderId: "263844844415",
             appId: "1:263844844415:web:2628932fa93f59be75804a"
         };
 
+        // Состояние игры
+        const gameState = {
+            playerId: null,
+            roomId: null,
+            playerSymbol: null,
+            currentPlayer: null,
+            gameBoard: ['', '', '', '', '', '', '', '', ''],
+            isGameActive: false,
+            isAgainstComputer: false,
+            playerName: `Игрок ${Math.floor(Math.random() * 1000)}`
+        };
+
+        // DOM элементы
+        const elements = {
+            menuScreen: document.getElementById('menu-screen'),
+            roomScreen: document.getElementById('room-screen'),
+            joinScreen: document.getElementById('join-screen'),
+            gameScreen: document.getElementById('game-screen'),
+            createRoomBtn: document.getElementById('create-room-btn'),
+            joinRoomBtn: document.getElementById('join-room-btn'),
+            playComputerBtn: document.getElementById('play-computer-btn'),
+            joinRoomConfirmBtn: document.getElementById('join-room-confirm-btn'),
+            backToMenuBtn: document.getElementById('back-to-menu-btn'),
+            copyLinkBtn: document.getElementById('copy-link-btn'),
+            leaveRoomBtn: document.getElementById('leave-room-btn'),
+            restartGameBtn: document.getElementById('restart-game-btn'),
+            exitGameBtn: document.getElementById('exit-game-btn'),
+            roomIdInput: document.getElementById('room-id-input'),
+            roomIdDisplay: document.getElementById('room-id-display'),
+            player1Name: document.getElementById('player1-name'),
+            player2Name: document.getElementById('player2-name'),
+            currentPlayerDisplay: document.getElementById('current-player'),
+            gameStatus: document.getElementById('game-status'),
+            playerTurn: document.getElementById('player-turn'),
+            board: document.getElementById('board'),
+            notification: document.getElementById('notification')
+        };
+
         // Инициализация Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        let database;
 
-        // Глобальные перемены
-        let currentRoom = null;
-        let playerName = '';
-        let playerSymbol = null;
-        let isMyTurn = false;
-        let gameBoard = ['', '', '', '', '', '', '', '', ''];
-
-        // Навигация между экранами
-        function showMainMenu() {
-            document.getElementById('main-menu').style.display = 'flex';
-            document.getElementById('create-room').style.display = 'none';
-            document.getElementById('join-room').style.display = 'none';
-            document.getElementById('waiting-room').style.display = 'none';
-            document.getElementById('game-board').style.display = 'none';
+        function initializeFirebase() {
+            // Инициализация Firebase
+            const app = firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            
+            // Генерация уникального ID для игрока
+            gameState.playerId = generateId();
         }
 
-        function showCreateRoom() {
-            document.getElementById('main-menu').style.display = 'none';
-            document.getElementById('create-room').style.display = 'flex';
+        // Генерация случайного ID
+        function generateId() {
+            return Math.random().toString(36).substring(2, 9);
         }
 
-        function showJoinRoom() {
-            document.getElementById('main-menu').style.display = 'none';
-            document.getElementById('join-room').style.display = 'flex';
+        // Отображение уведомления
+        function showNotification(message, duration = 3000) {
+            elements.notification.textContent = message;
+            elements.notification.classList.add('show');
+            
+            setTimeout(() => {
+                elements.notification.classList.remove('show');
+            }, duration);
         }
 
         // Создание комнаты
         function createRoom() {
-            const name = document.getElementById('player-name').value.trim();
-            if (!name) {
-                alert('Пожалуйста, введите ваше имя');
-                return;
-            }
-
-            playerName = name;
-            const roomId = generateRoomId();
-            currentRoom = roomId;
-
-            const roomData = {
-                players: {
-                    player1: {
-                        name: playerName,
-                        symbol: 'X'
-                    }
+            gameState.roomId = generateId();
+            gameState.playerSymbol = 'X';
+            gameState.currentPlayer = 'X';
+            gameState.isGameActive = false;
+            gameState.isAgainstComputer = false;
+            
+            // Обновление интерфейса
+            elements.roomIdDisplay.textContent = gameState.roomId;
+            elements.player1Name.textContent = gameState.playerName;
+            elements.player2Name.textContent = 'Ожидание игрока...';
+            
+            // Переключение экранов
+            elements.menuScreen.classList.add('hidden');
+            elements.roomScreen.classList.remove('hidden');
+            
+            // Создание комнаты в Firebase
+            const roomRef = database.ref(`rooms/${gameState.roomId}`);
+            
+            roomRef.set({
+                player1: {
+                    id: gameState.playerId,
+                    name: gameState.playerName,
+                    symbol: 'X'
                 },
-                gameState: {
-                    board: gameBoard,
-                    currentTurn: 'X',
-                    winner: null,
-                    gameActive: false
-                },
-                createdAt: Date.now()
-            };
-
-            database.ref('rooms/' + roomId).set(roomData)
-                .then(() => {
-                    playerSymbol = 'X';
-                    document.getElementById('room-code-display').textContent = roomId;
-                    document.getElementById('main-menu').style.display = 'none';
-                    document.getElementById('create-room').style.display = 'none';
-                    document.getElementById('waiting-room').style.display = 'block';
+                player2: null,
+                board: ['', '', '', '', '', '', '', '', ''],
+                currentPlayer: 'X',
+                gameStatus: 'waiting'
+            });
+            
+            // Слушатель изменений в комнате
+            roomRef.on('value', (snapshot) => {
+                const room = snapshot.val();
+                
+                if (!room) {
+                    // Комната удалена
+                    showNotification('Комната была закрыта');
+                    resetGame();
+                    return;
+                }
+                
+                // Обновление информации об игроках
+                if (room.player2) {
+                    elements.player2Name.textContent = room.player2.name;
                     
-                    // Слушаем изменения в комнате
-                    listenToRoom(roomId);
-                })
-                .catch((error) => {
-                    alert('Ошибка создания комнаты: ' + error.message);
-                });
+                    if (room.gameStatus === 'playing' && !gameState.isGameActive) {
+                        // Начинаем игру
+                        gameState.isGameActive = true;
+                        document.getElementById('waiting-message').classList.add('hidden');
+                        startGame();
+                    }
+                }
+                
+                // Обновление доски
+                if (room.gameStatus === 'playing') {
+                    updateBoard(room.board);
+                    updateCurrentPlayer(room.currentPlayer);
+                }
+                
+                // Проверка на завершение игры
+                if (room.gameStatus === 'finished') {
+                    const winner = checkWinner(room.board);
+                    if (winner) {
+                        showGameStatus(winner === gameState.playerSymbol ? 'Вы победили!' : 'Вы проиграли!');
+                    } else {
+                        showGameStatus('Ничья!');
+                    }
+                    gameState.isGameActive = false;
+                }
+            });
         }
 
         // Присоединение к комнате
-        function joinRoom() {
-            const name = document.getElementById('join-name').value.trim();
-            const roomId = document.getElementById('room-id').value.trim().toUpperCase();
+        function joinRoom(roomId) {
+            gameState.roomId = roomId;
+            gameState.isAgainstComputer = false;
             
-            if (!name || !roomId) {
-                alert('Пожалуйста, заполните все поля');
-                return;
-            }
-
-            playerName = name;
+            const roomRef = database.ref(`rooms/${roomId}`);
             
-            // Проверяем существование комнаты
-            database.ref('rooms/' + roomId).once('value')
-                .then((snapshot) => {
-                    if (!snapshot.exists()) {
-                        alert('Комната не найдена');
-                        return;
-                    }
-
-                    const roomData = snapshot.val();
-                    if (roomData.players.player2) {
-                        alert('Комната уже заполнена');
-                        return;
-                    }
-
-                    // Присоединяемся к комнате
-                    database.ref('rooms/' + roomId + '/players/player2').set({
-                        name: playerName,
-                        symbol: 'O'
-                    }).then(() => {
-                        // Активируем игру
-                        database.ref('rooms/' + roomId + '/gameState/gameActive').set(true);
-                        
-                        currentRoom = roomId;
-                        playerSymbol = 'O';
-                        
-                        document.getElementById('main-menu').style.display = 'none';
-                        document.getElementById('join-room').style.display = 'none';
-                        
-                        // Слушаем изменения в комнате
-                        listenToRoom(roomId);
-                    });
-                })
-                .catch((error) => {
-                    alert('Ошибка подключения: ' + error.message);
-                });
-        }
-
-        // Слушать изменения в комнате
-        function listenToRoom(roomId) {
-            database.ref('rooms/' + roomId).on('value', (snapshot) => {
-                if (!snapshot.exists()) {
-                    alert('Комната была удалена');
-                    showMainMenu();
+            roomRef.once('value').then((snapshot) => {
+                const room = snapshot.val();
+                
+                if (!room) {
+                    showNotification('Комната не найдена');
                     return;
                 }
-
-                const roomData = snapshot.val();
-                updateGameUI(roomData);
+                
+                if (room.player2) {
+                    showNotification('Комната уже заполнена');
+                    return;
+                }
+                
+                // Присоединяемся как второй игрок
+                gameState.playerSymbol = 'O';
+                gameState.currentPlayer = 'X'; // Первый игрок ходит первым
+                
+                // Обновление интерфейса
+                elements.roomIdDisplay.textContent = gameState.roomId;
+                elements.player1Name.textContent = room.player1.name;
+                elements.player2Name.textContent = gameState.playerName;
+                
+                // Переключение экранов
+                elements.joinScreen.classList.add('hidden');
+                elements.roomScreen.classList.remove('hidden');
+                document.getElementById('waiting-message').classList.add('hidden');
+                
+                // Обновление комнаты в Firebase
+                roomRef.update({
+                    player2: {
+                        id: gameState.playerId,
+                        name: gameState.playerName,
+                        symbol: 'O'
+                    },
+                    gameStatus: 'playing'
+                });
+                
+                // Начинаем игру
+                gameState.isGameActive = true;
+                startGame();
+                
+                // Слушатель изменений в комнате
+                roomRef.on('value', (snapshot) => {
+                    const room = snapshot.val();
+                    
+                    if (!room) {
+                        // Комната удалена
+                        showNotification('Комната была закрыта');
+                        resetGame();
+                        return;
+                    }
+                    
+                    // Обновление доски
+                    if (room.gameStatus === 'playing') {
+                        updateBoard(room.board);
+                        updateCurrentPlayer(room.currentPlayer);
+                    }
+                    
+                    // Проверка на завершение игры
+                    if (room.gameStatus === 'finished') {
+                        const winner = checkWinner(room.board);
+                        if (winner) {
+                            showGameStatus(winner === gameState.playerSymbol ? 'Вы победили!' : 'Вы проиграли!');
+                        } else {
+                            showGameStatus('Ничья!');
+                        }
+                        gameState.isGameActive = false;
+                    }
+                });
             });
         }
 
-        // Обновление интерфейса игры
-        function updateGameUI(roomData) {
-            const { players, gameState } = roomData;
+        // Игра против компьютера
+        function playAgainstComputer() {
+            gameState.roomId = generateId();
+            gameState.playerSymbol = 'X';
+            gameState.currentPlayer = 'X';
+            gameState.isGameActive = true;
+            gameState.isAgainstComputer = true;
             
-            // Проверяем, есть ли второй игрок
-            if (!players.player2) {
-                // Показываем экран ожидания
-                document.getElementById('waiting-room').style.display = 'block';
-                document.getElementById('game-board').style.display = 'none';
-                return;
-            }
+            // Переключение экранов
+            elements.menuScreen.classList.add('hidden');
+            elements.gameScreen.classList.remove('hidden');
+            
+            // Инициализация доски
+            initializeBoard();
+            updateCurrentPlayer('X');
+            showGameStatus('');
+        }
 
-            // Показываем игровое поле
-            document.getElementById('waiting-room').style.display = 'none';
-            document.getElementById('game-board').style.display = 'block';
+        // Начало игры
+        function startGame() {
+            // Переключение экранов
+            elements.roomScreen.classList.add('hidden');
+            elements.gameScreen.classList.remove('hidden');
+            
+            // Инициализация доски
+            initializeBoard();
+            updateCurrentPlayer('X');
+            showGameStatus('');
+        }
 
-            // Обновляем имена игроков
-            document.getElementById('player1-name').textContent = players.player1.name;
-            document.getElementById('player2-name').textContent = players.player2.name;
-
-            // Обновляем доску
-            gameBoard = gameState.board;
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach((cell, index) => {
-                cell.textContent = gameBoard[index];
-                cell.classList.toggle('disabled', gameBoard[index] !== '' || !gameState.gameActive);
-            });
-
-            // Обновляем информацию о ходе
-            isMyTurn = gameState.currentTurn === playerSymbol && gameState.gameActive;
-            document.getElementById('turn-info').textContent = 
-                isMyTurn ? '🎯 Ваш ход!' : `🎯 Ход игрока ${gameState.currentTurn}`;
-
-            // Проверяем победителя
-            if (gameState.winner) {
-                showWinner(gameState.winner, players);
+        // Инициализация игровой доски
+        function initializeBoard() {
+            elements.board.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.dataset.index = i;
+                cell.addEventListener('click', () => handleCellClick(i));
+                elements.board.appendChild(cell);
             }
         }
 
-        // Сделать ход
-        function makeMove(index) {
-            if (!isMyTurn || gameBoard[index] !== '') return;
-
-            gameBoard[index] = playerSymbol;
+        // Обновление доски
+        function updateBoard(board) {
+            gameState.gameBoard = [...board];
             
-            // Проверяем победителя
-            const winner = checkWinner();
-            const isDraw = gameBoard.every(cell => cell !== '');
-            
-            const updates = {
-                [`rooms/${currentRoom}/gameState/board`]: gameBoard,
-                [`rooms/${currentRoom}/gameState/currentTurn`]: playerSymbol === 'X' ? 'O' : 'X'
-            };
-
-            if (winner) {
-                updates[`rooms/${currentRoom}/gameState/winner`] = winner;
-                updates[`rooms/${currentRoom}/gameState/gameActive`] = false;
-            } else if (isDraw) {
-                updates[`rooms/${currentRoom}/gameState/winner`] = 'draw';
-                updates[`rooms/${currentRoom}/gameState/gameActive`] = false;
+            for (let i = 0; i < 9; i++) {
+                const cell = elements.board.children[i];
+                cell.textContent = board[i];
+                cell.className = 'cell';
+                if (board[i] === 'X') cell.classList.add('x');
+                if (board[i] === 'O') cell.classList.add('o');
             }
+        }
 
-            database.ref().update(updates);
+        // Обработка клика по клетке
+        function handleCellClick(index) {
+            if (!gameState.isGameActive) return;
+            if (gameState.gameBoard[index] !== '') return;
+            if (gameState.currentPlayer !== gameState.playerSymbol && !gameState.isAgainstComputer) return;
+            
+            if (gameState.isAgainstComputer) {
+                // Игра против компьютера
+                if (gameState.currentPlayer !== gameState.playerSymbol) return;
+                
+                // Ход игрока
+                gameState.gameBoard[index] = gameState.playerSymbol;
+                updateBoard(gameState.gameBoard);
+                
+                // Проверка на победу
+                const winner = checkWinner(gameState.gameBoard);
+                if (winner) {
+                    showGameStatus(winner === gameState.playerSymbol ? 'Вы победили!' : 'Компьютер победил!');
+                    gameState.isGameActive = false;
+                    return;
+                }
+                
+                // Проверка на ничью
+                if (!gameState.gameBoard.includes('')) {
+                    showGameStatus('Ничья!');
+                    gameState.isGameActive = false;
+                    return;
+                }
+                
+                // Ход компьютера
+                gameState.currentPlayer = 'O';
+                updateCurrentPlayer('O');
+                
+                setTimeout(() => {
+                    makeComputerMove();
+                }, 1000);
+            } else {
+                // Игра против другого игрока
+                const roomRef = database.ref(`rooms/${gameState.roomId}`);
+                
+                // Обновление доски
+                const newBoard = [...gameState.gameBoard];
+                newBoard[index] = gameState.playerSymbol;
+                
+                // Проверка на победу
+                const winner = checkWinner(newBoard);
+                const newGameStatus = winner ? 'finished' : !newBoard.includes('') ? 'finished' : 'playing';
+                
+                // Определение следующего игрока
+                const nextPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
+                
+                // Обновление данных в Firebase
+                roomRef.update({
+                    board: newBoard,
+                    currentPlayer: newGameStatus === 'playing' ? nextPlayer : null,
+                    gameStatus: newGameStatus
+                });
+            }
+        }
+
+        // Ход компьютера
+        function makeComputerMove() {
+            if (!gameState.isGameActive) return;
+            
+            // Простой ИИ: сначала пытается выиграть, затем блокирует игрока, затем случайный ход
+            let move;
+            
+            // 1. Попытка выиграть
+            move = findWinningMove('O');
+            if (move === undefined) {
+                // 2. Попытка блокировать игрока
+                move = findWinningMove('X');
+                if (move === undefined) {
+                    // 3. Случайный ход
+                    const emptyCells = [];
+                    for (let i = 0; i < 9; i++) {
+                        if (gameState.gameBoard[i] === '') emptyCells.push(i);
+                    }
+                    move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                }
+            }
+            
+            if (move !== undefined) {
+                gameState.gameBoard[move] = 'O';
+                updateBoard(gameState.gameBoard);
+                
+                // Проверка на победу
+                const winner = checkWinner(gameState.gameBoard);
+                if (winner) {
+                    showGameStatus(winner === gameState.playerSymbol ? 'Вы победили!' : 'Компьютер победил!');
+                    gameState.isGameActive = false;
+                    return;
+                }
+                
+                // Проверка на ничью
+                if (!gameState.gameBoard.includes('')) {
+                    showGameStatus('Ничья!');
+                    gameState.isGameActive = false;
+                    return;
+                }
+                
+                gameState.currentPlayer = 'X';
+                updateCurrentPlayer('X');
+            }
+        }
+
+        // Поиск выигрышного хода
+        function findWinningMove(symbol) {
+            const board = gameState.gameBoard;
+            
+            // Проверка строк
+            for (let i = 0; i < 9; i += 3) {
+                const row = [board[i], board[i+1], board[i+2]];
+                if (row.filter(cell => cell === symbol).length === 2 && row.includes('')) {
+                    return i + row.indexOf('');
+                }
+            }
+            
+            // Проверка столбцов
+            for (let i = 0; i < 3; i++) {
+                const col = [board[i], board[i+3], board[i+6]];
+                if (col.filter(cell => cell === symbol).length === 2 && col.includes('')) {
+                    return i + (col.indexOf('') * 3);
+                }
+            }
+            
+            // Проверка диагоналей
+            const diag1 = [board[0], board[4], board[8]];
+            if (diag1.filter(cell => cell === symbol).length === 2 && diag1.includes('')) {
+                return diag1.indexOf('') * 4;
+            }
+            
+            const diag2 = [board[2], board[4], board[6]];
+            if (diag2.filter(cell => cell === symbol).length === 2 && diag2.includes('')) {
+                return 2 + (diag2.indexOf('') * 2);
+            }
+            
+            return undefined;
         }
 
         // Проверка победителя
-        function checkWinner() {
+        function checkWinner(board) {
             const winPatterns = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8], // горизонтали
-                [0, 3, 6], [1, 4, 7], [2, 5, 8], // вертикали
-                [0, 4, 8], [2, 4, 6] // диагонали
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // строки
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // столбцы
+                [0, 4, 8], [2, 4, 6]             // диагонали
             ];
-
-            for (let pattern of winPatterns) {
+            
+            for (const pattern of winPatterns) {
                 const [a, b, c] = pattern;
-                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-                    return gameBoard[a];
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    return board[a];
                 }
             }
+            
             return null;
         }
 
-        // Показать окно победителя
-        function showWinner(winner, players) {
-            const modal = document.getElementById('winner-modal');
-            const winnerText = document.getElementById('winner-text');
-            
-            if (winner === 'draw') {
-                winnerText.textContent = '🤝 Ничья!';
-            } else if (winner === playerSymbol) {
-                winnerText.textContent = '🎉 Вы победили!';
+        // Обновление текущего игрока
+        function updateCurrentPlayer(player) {
+            gameState.currentPlayer = player;
+            if (gameState.isAgainstComputer) {
+                elements.currentPlayerDisplay.textContent = player === 'X' ? 'Вы (X)' : 'Компьютер (O)';
             } else {
-                const winnerName = winner === 'X' ? players.player1.name : players.player2.name;
-                winnerText.textContent = `🏆 Победил ${winnerName}!`;
+                elements.currentPlayerDisplay.textContent = player === gameState.playerSymbol ? 'Вы' : 'Соперник';
             }
-            
-            modal.style.display = 'flex';
         }
 
-        // Новая игра
-        function newGame() {
-            gameBoard = ['', '', '', '', '', '', '', '', ''];
-            
-            const updates = {
-                [`rooms/${currentRoom}/gameState/board`]: gameBoard,
-                [`rooms/${currentRoom}/gameState/currentTurn`]: 'X',
-                [`rooms/${currentRoom}/gameState/winner`]: null,
-                [`rooms/${currentRoom}/gameState/gameActive`]: true
-            };
-
-            database.ref().update(updates);
-            
-            document.getElementById('winner-modal').style.display = 'none';
+        // Отображение статуса игры
+        function showGameStatus(message) {
+            elements.gameStatus.textContent = message;
         }
 
-        // Покинуть комнату
+        // Копирование ссылки на комнату
+        function copyRoomLink() {
+            const url = `${window.location.origin}${window.location.pathname}?room=${gameState.roomId}`;
+            navigator.clipboard.writeText(url).then(() => {
+                showNotification('Ссылка скопирована в буфер обмена');
+            });
+        }
+
+        // Выход из комнаты
         function leaveRoom() {
-            if (currentRoom) {
-                database.ref('rooms/' + currentRoom).off();
-                database.ref('rooms/' + currentRoom).remove();
-                currentRoom = null;
-                playerSymbol = null;
-                isMyTurn = false;
-                gameBoard = ['', '', '', '', '', '', '', '', ''];
+            if (gameState.roomId && !gameState.isAgainstComputer) {
+                const roomRef = database.ref(`rooms/${gameState.roomId}`);
+                roomRef.once('value').then((snapshot) => {
+                    const room = snapshot.val();
+                    
+                    if (room) {
+                        // Удаляем игрока из комнаты
+                        if (room.player1 && room.player1.id === gameState.playerId) {
+                            // Если это создатель комнаты - удаляем комнату
+                            roomRef.remove();
+                        } else if (room.player2 && room.player2.id === gameState.playerId) {
+                            // Если это второй игрок - удаляем только себя
+                            roomRef.update({ player2: null, gameStatus: 'waiting' });
+                        }
+                    }
+                });
             }
             
-            document.getElementById('winner-modal').style.display = 'none';
-            showMainMenu();
+            resetGame();
         }
 
-        // Генерация ID комнаты
-        function generateRoomId() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let result = '';
-            for (let i = 0; i < 6; i++) {
-                result += chars.charAt(Math.floor(Math.random() * chars.length));
+        // Перезапуск игры
+        function restartGame() {
+            if (gameState.isAgainstComputer) {
+                // Сброс игры с компьютером
+                gameState.gameBoard = ['', '', '', '', '', '', '', '', ''];
+                gameState.currentPlayer = 'X';
+                gameState.isGameActive = true;
+                initializeBoard();
+                updateCurrentPlayer('X');
+                showGameStatus('');
+            } else if (gameState.roomId) {
+                // Сброс многопользовательской игры
+                const roomRef = database.ref(`rooms/${gameState.roomId}`);
+                roomRef.update({
+                    board: ['', '', '', '', '', '', '', '', ''],
+                    currentPlayer: 'X',
+                    gameStatus: 'playing'
+                });
+                
+                gameState.isGameActive = true;
+                showGameStatus('');
             }
-            return result;
         }
 
-        // Обработка Enter в полях ввода
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('player-name').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') createRoom();
+        // Сброс игры
+        function resetGame() {
+            gameState.roomId = null;
+            gameState.playerSymbol = null;
+            gameState.currentPlayer = null;
+            gameState.gameBoard = ['', '', '', '', '', '', '', '', ''];
+            gameState.isGameActive = false;
+            gameState.isAgainstComputer = false;
+            
+            // Сброс интерфейса
+            elements.menuScreen.classList.remove('hidden');
+            elements.roomScreen.classList.add('hidden');
+            elements.joinScreen.classList.add('hidden');
+            elements.gameScreen.classList.add('hidden');
+            document.getElementById('waiting-message').classList.remove('hidden');
+            elements.gameStatus.textContent = '';
+        }
+
+        // Проверка параметров URL
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const roomId = urlParams.get('room');
+            
+            if (roomId) {
+                elements.roomIdInput.value = roomId;
+                elements.menuScreen.classList.add('hidden');
+                elements.joinScreen.classList.remove('hidden');
+            }
+        }
+
+        // Инициализация событий
+        function initializeEvents() {
+            // Кнопка создания комнаты
+            elements.createRoomBtn.addEventListener('click', createRoom);
+            
+            // Кнопка присоединения к комнате
+            elements.joinRoomBtn.addEventListener('click', () => {
+                elements.menuScreen.classList.add('hidden');
+                elements.joinScreen.classList.remove('hidden');
             });
             
-            document.getElementById('join-name').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') document.getElementById('room-id').focus();
+            // Кнопка игры с компьютером
+            elements.playComputerBtn.addEventListener('click', playAgainstComputer);
+            
+            // Кнопка подтверждения присоединения
+            elements.joinRoomConfirmBtn.addEventListener('click', () => {
+                const roomId = elements.roomIdInput.value.trim();
+                if (roomId) joinRoom(roomId);
             });
             
-            document.getElementById('room-id').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') joinRoom();
-            });
-        });
+            // Кнопка "Назад" в меню
+            elements.backToMenuBtn.addEventListener('click', resetGame);
+            
+            // Кнопка копирования ссылки
+            elements.copyLinkBtn.addEventListener('click', copyRoomLink);
+            
+            // Кнопка выхода из комнаты
+            elements.leaveRoomBtn.addEventListener('click', leaveRoom);
+            
+            // Кнопка перезапуска игры
+            elements.restartGameBtn.addEventListener('click', restartGame);
+            
+            // Кнопка выхода в меню
+            elements.exitGameBtn.addEventListener('click', resetGame);
+        }
+
+        // Инициализация приложения
+        function initializeApp() {
+            initializeFirebase();
+            initializeEvents();
+            checkUrlParams();
+        }
+
+        // Запуск приложения после загрузки страницы
+        window.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 </body>
 </html>
