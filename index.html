@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Топ казино 2025</title>
+    <title>Крестики-Нолики Онлайн</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
@@ -14,648 +12,644 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Анимированный фон */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
-                linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent);
-            background-repeat: repeat;
-            background-size: 100px 100px;
-            animation: twinkle 4s linear infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Модальное окно возраста */
-        .age-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .age-modal-content {
-            background: linear-gradient(145deg, #1a1a2e, #16213e);
-            padding: 50px 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-        }
-
-        .age-modal-content::before {
-            content: '🎰';
-            font-size: 4rem;
-            display: block;
-            margin-bottom: 20px;
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .age-modal h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            color: #ffd700;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        .age-modal p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #ccc;
-            line-height: 1.6;
-        }
-
-        .age-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .age-btn {
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', monospace;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .age-btn-yes {
-            background: linear-gradient(45deg, #28a745, #20c997);
             color: white;
-            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
-        }
-
-        .age-btn-yes:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(40, 167, 69, 0.6);
-        }
-
-        .age-btn-no {
-            background: linear-gradient(45deg, #dc3545, #fd7e14);
-            color: white;
-            box-shadow: 0 5px 20px rgba(220, 53, 69, 0.4);
-        }
-
-        .age-btn-no:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(220, 53, 69, 0.6);
-        }
-
-        /* Основной контент */
-        .main-content {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .main-content.show {
-            opacity: 1;
         }
 
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            width: 90%;
         }
 
-        .header {
+        h1 {
             text-align: center;
-            padding: 60px 0 40px;
-            position: relative;
-        }
-
-        .main-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-            background-size: 200% 200%;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: goldShine 3s ease-in-out infinite;
-            margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        @keyframes goldShine {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: #ccc;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        .vip-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            color: #000;
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-top: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        /* Карточки казино */
-        .casinos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .casino-card {
-            background: linear-gradient(145deg, #1e1e3f, #2a2a5a);
-            border-radius: 25px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .casino-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, #ff6b6b, #4ecdc4, #ffd700);
-            background-size: 200% 100%;
-            animation: rainbow 3s linear infinite;
-        }
-
-        @keyframes rainbow {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
-        }
-
-        .casino-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.5);
-        }
-
-        .rank-badge {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #000;
-            border-radius: 50%;
+        .menu {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            font-weight: 900;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-            border: 3px solid #fff;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .casino-name {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ffd700;
-            margin-bottom: 15px;
-            padding-right: 70px;
-        }
-
-        .casino-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .feature-chip {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
             color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .casino-description {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 25px;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-group {
+            margin: 1rem 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
             font-size: 1rem;
         }
 
-        .casino-stats {
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .game-board {
+            display: none;
+            text-align: center;
+        }
+
+        .board {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 8px;
+            margin: 2rem 0;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #ffd700;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-top: 5px;
-        }
-
-        .casino-button {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            color: #000;
+        .cell {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            border-radius: 50px;
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+            border-radius: 12px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            min-height: 80px;
         }
 
-        .casino-button::before {
-            content: '';
-            position: absolute;
+        .cell:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .cell.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .game-info {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .player-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .room-code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .winner-announcement {
+            display: none;
+            position: fixed;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
         }
 
-        .casino-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        .winner-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .casino-button:hover::before {
-            left: 100%;
+        .winner-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Адаптивность */
+        .connection-methods {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .connection-methods {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .method-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .method-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
             }
             
-            .casinos-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .casino-card {
-                padding: 20px;
-            }
-            
-            .age-modal-content {
-                padding: 30px 20px;
-            }
-            
-            .age-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .age-btn {
-                width: 200px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-title {
+            h1 {
                 font-size: 2rem;
             }
             
-            .casino-name {
+            .cell {
+                min-height: 60px;
                 font-size: 1.5rem;
             }
-            
-            .casino-stats {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-        }
-
-        .hidden {
-            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- Модальное окно проверки возраста -->
-    <div class="age-modal" id="ageModal">
-        <div class="age-modal-content">
-            <h2>Добро пожаловать!</h2>
-            <p>Этот сайт содержит информацию об азартных играх и предназначен только для лиц, достигших 18-летнего возраста.</p>
-            <p><strong>Вам уже исполнилось 18 лет?</strong></p>
-            <div class="age-buttons">
-                <button class="age-btn age-btn-yes" onclick="confirmAge(true)">Да, мне 18+</button>
-                <button class="age-btn age-btn-no" onclick="confirmAge(false)">Нет, мне менее 18</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Основной контент -->
-    <div class="main-content" id="mainContent">
-        <div class="bg-animation"></div>
+    <div class="container">
+        <h1>🎮 Крестики-Нолики</h1>
         
-        <div class="container">
-            <header class="header">
-                <h1 class="main-title" id="mainTitle">ТОП-5 КАЗИНО 2025</h1>
-                <p class="subtitle" id="subtitle">Лучшие онлайн казино с высокими рейтингами, быстрыми выплатами и честной игрой</p>
-                <div class="vip-badge">🔥 ЭКСКЛЮЗИВНЫЕ БОНУСЫ</div>
-            </header>
-
-            <div class="casinos-grid" id="casinosGrid">
-                <!-- Карточки будут добавлены через JavaScript -->
+        <!-- Главное меню -->
+        <div id="main-menu" class="menu">
+            <div class="connection-methods">
+                <div class="method-card">
+                    <div class="method-icon">💻</div>
+                    <h3>С компьютера</h3>
+                    <p>Полная функциональность на большом экране</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-icon">📱</div>
+                    <h3>С телефона</h3>
+                    <p>Удобная мобильная версия</p>
+                </div>
             </div>
+            
+            <button class="btn" onclick="showCreateRoom()">🏠 Создать комнату</button>
+            <button class="btn" onclick="showJoinRoom()">🚪 Присоединиться к комнате</button>
+        </div>
+
+        <!-- Создание комнаты -->
+        <div id="create-room" class="menu" style="display: none;">
+            <div class="input-group">
+                <label for="player-name">Ваше имя:</label>
+                <input type="text" id="player-name" placeholder="Введите ваше имя">
+            </div>
+            <button class="btn" onclick="createRoom()">🎯 Создать комнату</button>
+            <button class="back-btn" onclick="showMainMenu()">← Назад</button>
+        </div>
+
+        <!-- Присоединение к комнате -->
+        <div id="join-room" class="menu" style="display: none;">
+            <div class="input-group">
+                <label for="join-name">Ваше имя:</label>
+                <input type="text" id="join-name" placeholder="Введите ваше имя">
+            </div>
+            <div class="input-group">
+                <label for="room-id">Код комнаты:</label>
+                <input type="text" id="room-id" placeholder="Введите код комнаты">
+            </div>
+            <button class="btn" onclick="joinRoom()">🔗 Присоединиться</button>
+            <button class="back-btn" onclick="showMainMenu()">← Назад</button>
+        </div>
+
+        <!-- Ожидание игрока -->
+        <div id="waiting-room" class="game-board">
+            <h2>🎲 Комната создана!</h2>
+            <div class="room-code">
+                <strong>Код комнаты: <span id="room-code-display"></span></strong>
+            </div>
+            <p>Поделитесь этим кодом с другом чтобы он мог присоединиться</p>
+            <div class="game-info">
+                <p>⏳ Ожидание второго игрока...</p>
+            </div>
+            <button class="back-btn" onclick="leaveRoom()">← Покинуть комнату</button>
+        </div>
+
+        <!-- Игровое поле -->
+        <div id="game-board" class="game-board">
+            <div class="player-info">
+                <div>👤 <span id="player1-name">Игрок 1</span> (X)</div>
+                <div>👤 <span id="player2-name">Игрок 2</span> (O)</div>
+            </div>
+            
+            <div class="game-info">
+                <p id="turn-info">🎯 Ход игрока X</p>
+            </div>
+
+            <div class="board" id="board">
+                <button class="cell" onclick="makeMove(0)"></button>
+                <button class="cell" onclick="makeMove(1)"></button>
+                <button class="cell" onclick="makeMove(2)"></button>
+                <button class="cell" onclick="makeMove(3)"></button>
+                <button class="cell" onclick="makeMove(4)"></button>
+                <button class="cell" onclick="makeMove(5)"></button>
+                <button class="cell" onclick="makeMove(6)"></button>
+                <button class="cell" onclick="makeMove(7)"></button>
+                <button class="cell" onclick="makeMove(8)"></button>
+            </div>
+
+            <button class="back-btn" onclick="leaveRoom()">← Покинуть игру</button>
         </div>
     </div>
+
+    <!-- Окно победителя -->
+    <div id="winner-modal" class="winner-announcement">
+        <div class="winner-content">
+            <h2 id="winner-text">🎉</h2>
+            <button class="btn" onclick="newGame()">🔄 Новая игра</button>
+            <button class="back-btn" onclick="leaveRoom()">← В главное меню</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.2/firebase-database-compat.min.js"></script>
 
     <script>
-        // Конфигурация сайта
-        const siteConfig = {
-            mainTitle: "ТОП-5 КАЗИНО 2025",
-            subtitle: "Лучшие онлайн казино с высокими рейтингами, быстрыми выплатами и честной игрой",
-            casinos: [
-                {
-                    rank: 1,
-                    name: "ROYAL CASINO",
-                    description: "Премиальное казино с огромной коллекцией игр от ведущих провайдеров. Быстрые выплаты и VIP-программа для постоянных игроков.",
-                    features: ["Живые дилеры", "Быстрые выплаты", "VIP программа", "24/7 поддержка"],
-                    stats: {
-                        bonus: "200%",
-                        games: "3000+",
-                        rating: "9.8/10"
-                    },
-                    buttonText: "ИГРАТЬ СЕЙЧАС",
-                    url: "https://example.com"
-                },
-                {
-                    rank: 2,
-                    name: "GOLDEN PALACE",
-                    description: "Легендарное казино с безупречной репутацией. Огромные джекпоты, эксклюзивные турниры и щедрые бонусы для новых игроков.",
-                    features: ["Мега джекпоты", "Турниры", "Мобильная версия", "Криpto"],
-                    stats: {
-                        bonus: "150%",
-                        games: "2500+",
-                        rating: "9.6/10"
-                    },
-                    buttonText: "ПОЛУЧИТЬ БОНУС",
-                    url: "https://example.com"
-                },
-                {
-                    rank: 3,
-                    name: "DIAMOND CLUB",
-                    description: "Эксклюзивный игровой клуб с уникальными играми и персональным сервисом. Идеальное место для ценителей качества.",
-                    features: ["Эксклюзивные игры", "Персональный менеджер", "Кэшбэк", "Программа лояльности"],
-                    stats: {
-                        bonus: "100%",
-                        games: "2000+",
-                        rating: "9.4/10"
-                    },
-                    buttonText: "ПРИСОЕДИНИТЬСЯ",
-                    url: "https://example.com"
-                },
-                {
-                    rank: 4,
-                    name: "LUCKY STARS",
-                    description: "Современное казино с инновационным подходом к игровому процессу. Уникальные функции и регулярные акции.",
-                    features: ["Инновации", "Регулярные акции", "Социальные игры", "Мгновенная игра"],
-                    stats: {
-                        bonus: "125%",
-                        games: "1800+",
-                        rating: "9.2/10"
-                    },
-                    buttonText: "НАЧАТЬ ИГРУ",
-                    url: "https://example.com"
-                },
-                {
-                    rank: 5,
-                    name: "PLATINUM CASINO",
-                    description: "Надёжное казино с стабильной работой и справедливыми условиями. Отличный выбор для начинающих и опытных игроков.",
-                    features: ["Справедливая игра", "Стабильность", "Обучение", "Демо режим"],
-                    stats: {
-                        bonus: "75%",
-                        games: "1500+",
-                        rating: "9.0/10"
-                    },
-                    buttonText: "ПОПРОБОВАТЬ",
-                    url: "https://example.com"
-                }
-            ]
+        // Firebase конфигурация
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2oMcl5rA1lzPfEHV_64Gbws6HY0aQnl0",
+            authDomain: "tic-tac-toe-game-fabc6.firebaseapp.com",
+            databaseURL: "https://tic-tac-toe-game-fabc6-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "tic-tac-toe-game-fabc6",
+            storageBucket: "tic-tac-toe-game-fabc6.firebasestorage.app",
+            messagingSenderId: "263844844415",
+            appId: "1:263844844415:web:2628932fa93f59be75804a"
         };
 
-        // Функция проверки возраста
-        function confirmAge(isAdult) {
-            if (isAdult) {
-                document.getElementById('ageModal').style.display = 'none';
-                document.getElementById('mainContent').classList.add('show');
-                renderContent();
-            } else {
-                // Перенаправляем на другой сайт или показываем сообщение
-                document.body.innerHTML = `
-                    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #0a0a0a; color: #fff; text-align: center; font-family: 'Orbitron', monospace;">
-                        <div>
-                            <h2 style="font-size: 2rem; color: #ffd700; margin-bottom: 20px;">Извините!</h2>
-                            <p style="font-size: 1.2rem; margin-bottom: 30px;">Этот сайт предназначен только для лиц старше 18 лет.</p>
-                            <p style="color: #ccc;">Вы будете перенаправлены через <span id="countdown">5</span> секунд...</p>
-                        </div>
-                    </div>
-                `;
-                
-                let countdown = 5;
-                const timer = setInterval(() => {
-                    countdown--;
-                    const countdownEl = document.getElementById('countdown');
-                    if (countdownEl) countdownEl.textContent = countdown;
-                    
-                    if (countdown <= 0) {
-                        clearInterval(timer);
-                        window.location.href = 'https://www.google.com';
+        // Инициализация Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Глобальные перемены
+        let currentRoom = null;
+        let playerName = '';
+        let playerSymbol = null;
+        let isMyTurn = false;
+        let gameBoard = ['', '', '', '', '', '', '', '', ''];
+
+        // Навигация между экранами
+        function showMainMenu() {
+            document.getElementById('main-menu').style.display = 'flex';
+            document.getElementById('create-room').style.display = 'none';
+            document.getElementById('join-room').style.display = 'none';
+            document.getElementById('waiting-room').style.display = 'none';
+            document.getElementById('game-board').style.display = 'none';
+        }
+
+        function showCreateRoom() {
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('create-room').style.display = 'flex';
+        }
+
+        function showJoinRoom() {
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('join-room').style.display = 'flex';
+        }
+
+        // Создание комнаты
+        function createRoom() {
+            const name = document.getElementById('player-name').value.trim();
+            if (!name) {
+                alert('Пожалуйста, введите ваше имя');
+                return;
+            }
+
+            playerName = name;
+            const roomId = generateRoomId();
+            currentRoom = roomId;
+
+            const roomData = {
+                players: {
+                    player1: {
+                        name: playerName,
+                        symbol: 'X'
                     }
-                }, 1000);
-            }
-        }
+                },
+                gameState: {
+                    board: gameBoard,
+                    currentTurn: 'X',
+                    winner: null,
+                    gameActive: false
+                },
+                createdAt: Date.now()
+            };
 
-        // Функция создания карточки казино
-        function createCasinoCard(casino) {
-            const featuresHTML = casino.features.map(feature => 
-                `<span class="feature-chip">${feature}</span>`
-            ).join('');
-
-            return `
-                <div class="casino-card">
-                    <div class="rank-badge">${casino.rank}</div>
-                    <h3 class="casino-name">${casino.name}</h3>
-                    <div class="casino-features">${featuresHTML}</div>
-                    <p class="casino-description">${casino.description}</p>
-                    <div class="casino-stats">
-                        <div class="stat-item">
-                            <span class="stat-value">${casino.stats.bonus}</span>
-                            <div class="stat-label">Бонус</div>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-value">${casino.stats.games}</span>
-                            <div class="stat-label">Игр</div>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-value">${casino.stats.rating}</span>
-                            <div class="stat-label">Рейтинг</div>
-                        </div>
-                    </div>
-                    <a href="${casino.url}" class="casino-button" target="_blank" rel="noopener">${casino.buttonText}</a>
-                </div>
-            `;
-        }
-
-        // Функция рендеринга контента
-        function renderContent() {
-            document.getElementById('mainTitle').textContent = siteConfig.mainTitle;
-            document.getElementById('subtitle').textContent = siteConfig.subtitle;
-
-            const sortedCasinos = [...siteConfig.casinos].sort((a, b) => a.rank - b.rank);
-            const casinosHTML = sortedCasinos.map(casino => createCasinoCard(casino)).join('');
-            document.getElementById('casinosGrid').innerHTML = casinosHTML;
-
-            // Анимация появления карточек
-            setTimeout(() => {
-                document.querySelectorAll('.casino-card').forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 200);
+            database.ref('rooms/' + roomId).set(roomData)
+                .then(() => {
+                    playerSymbol = 'X';
+                    document.getElementById('room-code-display').textContent = roomId;
+                    document.getElementById('main-menu').style.display = 'none';
+                    document.getElementById('create-room').style.display = 'none';
+                    document.getElementById('waiting-room').style.display = 'block';
+                    
+                    // Слушаем изменения в комнате
+                    listenToRoom(roomId);
+                })
+                .catch((error) => {
+                    alert('Ошибка создания комнаты: ' + error.message);
                 });
-            }, 100);
         }
 
-        // API для редактирования
-        window.editConfig = {
-            setTitle: function(newTitle) {
-                siteConfig.mainTitle = newTitle;
-                document.getElementById('mainTitle').textContent = newTitle;
-            },
+        // Присоединение к комнате
+        function joinRoom() {
+            const name = document.getElementById('join-name').value.trim();
+            const roomId = document.getElementById('room-id').value.trim().toUpperCase();
             
-            setSubtitle: function(newSubtitle) {
-                siteConfig.subtitle = newSubtitle;
-                document.getElementById('subtitle').textContent = newSubtitle;
-            },
-            
-            updateCasino: function(index, casinoData) {
-                if (siteConfig.casinos[index]) {
-                    Object.assign(siteConfig.casinos[index], casinoData);
-                    renderContent();
-                }
-            },
-            
-            swapCasinos: function(index1, index2) {
-                if (siteConfig.casinos[index1] && siteConfig.casinos[index2]) {
-                    [siteConfig.casinos[index1], siteConfig.casinos[index2]] = [siteConfig.casinos[index2], siteConfig.casinos[index1]];
-                    renderContent();
-                }
-            },
-            
-            getConfig: function() {
-                return JSON.stringify(siteConfig, null, 2);
+            if (!name || !roomId) {
+                alert('Пожалуйста, заполните все поля');
+                return;
             }
-        };
 
-        // Инициализация
+            playerName = name;
+            
+            // Проверяем существование комнаты
+            database.ref('rooms/' + roomId).once('value')
+                .then((snapshot) => {
+                    if (!snapshot.exists()) {
+                        alert('Комната не найдена');
+                        return;
+                    }
+
+                    const roomData = snapshot.val();
+                    if (roomData.players.player2) {
+                        alert('Комната уже заполнена');
+                        return;
+                    }
+
+                    // Присоединяемся к комнате
+                    database.ref('rooms/' + roomId + '/players/player2').set({
+                        name: playerName,
+                        symbol: 'O'
+                    }).then(() => {
+                        // Активируем игру
+                        database.ref('rooms/' + roomId + '/gameState/gameActive').set(true);
+                        
+                        currentRoom = roomId;
+                        playerSymbol = 'O';
+                        
+                        document.getElementById('main-menu').style.display = 'none';
+                        document.getElementById('join-room').style.display = 'none';
+                        
+                        // Слушаем изменения в комнате
+                        listenToRoom(roomId);
+                    });
+                })
+                .catch((error) => {
+                    alert('Ошибка подключения: ' + error.message);
+                });
+        }
+
+        // Слушать изменения в комнате
+        function listenToRoom(roomId) {
+            database.ref('rooms/' + roomId).on('value', (snapshot) => {
+                if (!snapshot.exists()) {
+                    alert('Комната была удалена');
+                    showMainMenu();
+                    return;
+                }
+
+                const roomData = snapshot.val();
+                updateGameUI(roomData);
+            });
+        }
+
+        // Обновление интерфейса игры
+        function updateGameUI(roomData) {
+            const { players, gameState } = roomData;
+            
+            // Проверяем, есть ли второй игрок
+            if (!players.player2) {
+                // Показываем экран ожидания
+                document.getElementById('waiting-room').style.display = 'block';
+                document.getElementById('game-board').style.display = 'none';
+                return;
+            }
+
+            // Показываем игровое поле
+            document.getElementById('waiting-room').style.display = 'none';
+            document.getElementById('game-board').style.display = 'block';
+
+            // Обновляем имена игроков
+            document.getElementById('player1-name').textContent = players.player1.name;
+            document.getElementById('player2-name').textContent = players.player2.name;
+
+            // Обновляем доску
+            gameBoard = gameState.board;
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach((cell, index) => {
+                cell.textContent = gameBoard[index];
+                cell.classList.toggle('disabled', gameBoard[index] !== '' || !gameState.gameActive);
+            });
+
+            // Обновляем информацию о ходе
+            isMyTurn = gameState.currentTurn === playerSymbol && gameState.gameActive;
+            document.getElementById('turn-info').textContent = 
+                isMyTurn ? '🎯 Ваш ход!' : `🎯 Ход игрока ${gameState.currentTurn}`;
+
+            // Проверяем победителя
+            if (gameState.winner) {
+                showWinner(gameState.winner, players);
+            }
+        }
+
+        // Сделать ход
+        function makeMove(index) {
+            if (!isMyTurn || gameBoard[index] !== '') return;
+
+            gameBoard[index] = playerSymbol;
+            
+            // Проверяем победителя
+            const winner = checkWinner();
+            const isDraw = gameBoard.every(cell => cell !== '');
+            
+            const updates = {
+                [`rooms/${currentRoom}/gameState/board`]: gameBoard,
+                [`rooms/${currentRoom}/gameState/currentTurn`]: playerSymbol === 'X' ? 'O' : 'X'
+            };
+
+            if (winner) {
+                updates[`rooms/${currentRoom}/gameState/winner`] = winner;
+                updates[`rooms/${currentRoom}/gameState/gameActive`] = false;
+            } else if (isDraw) {
+                updates[`rooms/${currentRoom}/gameState/winner`] = 'draw';
+                updates[`rooms/${currentRoom}/gameState/gameActive`] = false;
+            }
+
+            database.ref().update(updates);
+        }
+
+        // Проверка победителя
+        function checkWinner() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // горизонтали
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // вертикали
+                [0, 4, 8], [2, 4, 6] // диагонали
+            ];
+
+            for (let pattern of winPatterns) {
+                const [a, b, c] = pattern;
+                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                    return gameBoard[a];
+                }
+            }
+            return null;
+        }
+
+        // Показать окно победителя
+        function showWinner(winner, players) {
+            const modal = document.getElementById('winner-modal');
+            const winnerText = document.getElementById('winner-text');
+            
+            if (winner === 'draw') {
+                winnerText.textContent = '🤝 Ничья!';
+            } else if (winner === playerSymbol) {
+                winnerText.textContent = '🎉 Вы победили!';
+            } else {
+                const winnerName = winner === 'X' ? players.player1.name : players.player2.name;
+                winnerText.textContent = `🏆 Победил ${winnerName}!`;
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        // Новая игра
+        function newGame() {
+            gameBoard = ['', '', '', '', '', '', '', '', ''];
+            
+            const updates = {
+                [`rooms/${currentRoom}/gameState/board`]: gameBoard,
+                [`rooms/${currentRoom}/gameState/currentTurn`]: 'X',
+                [`rooms/${currentRoom}/gameState/winner`]: null,
+                [`rooms/${currentRoom}/gameState/gameActive`]: true
+            };
+
+            database.ref().update(updates);
+            
+            document.getElementById('winner-modal').style.display = 'none';
+        }
+
+        // Покинуть комнату
+        function leaveRoom() {
+            if (currentRoom) {
+                database.ref('rooms/' + currentRoom).off();
+                database.ref('rooms/' + currentRoom).remove();
+                currentRoom = null;
+                playerSymbol = null;
+                isMyTurn = false;
+                gameBoard = ['', '', '', '', '', '', '', '', ''];
+            }
+            
+            document.getElementById('winner-modal').style.display = 'none';
+            showMainMenu();
+        }
+
+        // Генерация ID комнаты
+        function generateRoomId() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 6; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Обработка Enter в полях ввода
         document.addEventListener('DOMContentLoaded', function() {
-            // Карточки изначально скрыты для анимации
-            const style = document.createElement('style');
-            style.textContent = '.casino-card { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }';
-            document.head.appendChild(style);
+            document.getElementById('player-name').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') createRoom();
+            });
+            
+            document.getElementById('join-name').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') document.getElementById('room-id').focus();
+            });
+            
+            document.getElementById('room-id').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') joinRoom();
+            });
         });
     </script>
 </body>
